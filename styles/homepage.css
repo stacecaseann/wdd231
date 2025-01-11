@@ -64,6 +64,9 @@ h1, h2, h3{
     display: none;
     /* flex-direction: row; */
 }
+.mobile-nav ul{
+    flex-direction: column; /* Stack items vertically */
+}
 .navigation{
     background-color: var(--light-blue);
     max-width: 100%;
