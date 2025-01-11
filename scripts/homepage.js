@@ -91,23 +91,36 @@ function getClassTemplate(classInfo)
 function getClassesHtml(classSubject)
 {
     const classElement = document.querySelector(".classList");    
+    const classCreditElement = document.querySelector(".classCredits");
     if (classSubject == "ALL")
     {
         const classHtml = courses.map(
             (course) => getClassTemplate(course)
         );
         classElement.innerHTML = classHtml.join("");
+        let total=0;
+        const credits = courses.reduce(
+            (total, course) => total + Number(course.credits),0
+        );
+        classCreditElement.innerHTML= `Total Credits: ${credits}`;
     }
     else
     {
-        const classHtml = courses.filter( 
+        const filteredClasses = courses.filter( 
             (course) =>course.subject == classSubject
-        )
+        );
+        const classHtml = filteredClasses
         .map(
             (course) => getClassTemplate(course));
         classElement.innerHTML = classHtml.join("");
+        let total=0;
+        const credits = filteredClasses.reduce(
+            (total, course) => total + Number(course.credits),0
+        );
+        classCreditElement.innerHTML= `Total Credits: ${credits}`;
     }
 }
+
 const allCoursesLink = document.getElementById("all");
 const cseCoursesLink = document.getElementById("cse");
 const wddCoursesLink = document.getElementById("wdd");

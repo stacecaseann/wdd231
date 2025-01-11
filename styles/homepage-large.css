@@ -12,4 +12,7 @@
     .mobile-nav.open {
         display: flex; /* Prevent hiding due to open class */
     }
+    .classList{
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
