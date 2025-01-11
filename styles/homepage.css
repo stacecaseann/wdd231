@@ -1,0 +1,141 @@
+:root{
+    --padding: 1rem;
+    --dark-blue: #25283d;
+    --light-blue: #D6E3F8;
+    --off-white: #fef5ef;
+    --tan: #e4bb97;
+    --medium-blue: #416788;
+    --header-font: "Lexend";
+    --normal-font: "Nunito";
+}
+
+body{
+    max-width: 1080px;
+    min-width: 500px;
+    font-family: var(--normal-font);
+    padding: var(--padding);
+}
+.profile{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--medium-blue);
+    padding: var(--padding);
+    /* flex: 1; */
+}
+.profile img{
+    width: 125px;
+    height: auto;
+}
+h1, h2, h3{
+    text-align: center;
+    font-family: var(--header-font);
+    background-color: var(--medium-blue);
+    padding: var(--padding);
+}
+/* .navigation
+{
+    display:flex; 
+    flex-direction: row;
+
+} */
+ /* NAVIGATION */
+ #menu{
+    font-size: 1.5rem;
+    border: 0;
+    background: none;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    /* color: white; */
+ }
+ #menu::before{
+    content: "☰";
+ }
+ #menu.open::before {
+	content: "x";
+}
+.mobile-nav.open{
+    display: flex;
+    flex-direction: row;
+}
+.mobile-nav{
+    display: none;
+    /* flex-direction: row; */
+}
+.navigation{
+    background-color: var(--light-blue);
+    max-width: 100%;
+    justify-content: space-between;
+    padding: var(--padding);
+}
+.navigation ul{
+    display:flex;
+    /* flex-direction: row; */
+    /* flex-direction: column; */
+    list-style:none;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    
+    /* flex: 1; */
+}
+/* .navigation li{
+    flex:1 1 100%;
+
+} */
+.navigation a{
+    /* display: block; */
+    text-decoration: none;
+    color: var(--dark-blue);
+    /* flex: 1; */
+}
+.active
+{
+    font-weight: bold;
+}
+/* .navigation ul{
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.navigation li{
+    flex:1;
+} */
+.hero{
+    display:flex;
+    flex-direction: row;
+    gap:1rem;
+    border: 1px solid black;
+}
+.hero section{
+    flex: 1;
+}
+.hero picture{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding);
+}
+.hero img{
+    width: 200px;
+    height: auto;
+}
+.classList{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.classList p{
+    min-width: 150px;
+}
+.placeholder{
+    height:200px;
+    width: 100px;
+    background-color: pink;
+}

@@ -1,0 +1,15 @@
+@media screen and (min-width: 640px)
+{
+    #menu {
+        display: none; /* hide hamburger button */
+    }
+    .mobile-nav{
+        display:block;
+    }
+    .mobile-nav ul{
+        flex-direction: row;
+    }
+    .mobile-nav.open {
+        display: flex; /* Prevent hiding due to open class */
+    }
+}

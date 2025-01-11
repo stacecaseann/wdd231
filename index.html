@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles/homepage.css">
+    <link rel="stylesheet" href="styles/homepage-large.css">
+    <script defer src="scripts/homepage.js"></script>
+    <script defer src="scripts/dates.js"></script>
+    <script defer src="scripts/menu.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WDD 231 - Stacy Yarrington">
+    <meta name="author" content="Stacy Yarrington">
+    <title>WDD 231-Course Home Page - Stacy Yarrington</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&family=Nunito&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="profile">
+            <img src="images/profile.jpg" width="200" height="200" alt="Profile Picture">
+            <h1>Stacy Yarrington</h1>
+        </div>
+        <button id="menu" aria-label="Open Menu"></button>
+        <nav class="navigation mobile-nav">
+        <ul>
+            <li><a href="" class="active">Home</a></li>
+            <li><a href="">Chamber</a></li>
+            <li><a href="">GitHub Profile</a></li>
+            <li><a href="">LinkedIn</a></li>
+        </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="hero">
+            <section>
+                <h2>Course Work</h2>
+                <ul>
+                    <li>Assignment 1</li>
+                    <li>Assignment 2</li>
+                    <li>Assignment 3</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Spanish Fork, UT</h2>
+                <picture>
+                    <source srcset="images/spanish-fork.webp" media="(min-width: 1000px)">
+                    <source srcset="images/spanish-fork-small.webp" media="(min-width: 500px)">
+                    <img src="images/spanish-fork-small.webp" alt="Spansish Fork" width="400" height="530">
+                </picture>
+
+                </div>
+            </section>
+        </div>
+        <section>
+            <h2>Web and Computer Programming Certificate</h2>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="#" id="all">All</a></li>
+                    <li><a href="#" id="cse">CSE</a></li>
+                    <li><a href="#" id="wdd">WDD</a></li>
+                </ul>
+            </nav>
+            <div class="classList">
+                <!-- <p>CSE 110</p>
+                <p>WDD 130</p>
+                <p>CSE 111</p>
+                <p>CSE 210</p>
+                <p>WDD 131</p>
+                <p>WDD 231</p> -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>©<span class="year"></span> 😀 Stacy Yarrington UT 😀</p>
+        <p id="lastModified"></p>
+
+    </footer>
+</body>
+</html>
