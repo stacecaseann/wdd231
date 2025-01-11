@@ -80,7 +80,12 @@ const courses = [
 
 function getClassTemplate(classInfo)
 {
-    return `<p>${classInfo.subject} ${classInfo.number}</p>`;
+    let classTakenHtml="";
+    if (classInfo.completed)
+        classTakenHtml = `class="classTaken"`;
+    else
+        classTakenHtml = `class="classNotTaken"`;
+    return `<p ${classTakenHtml}>${classInfo.subject} ${classInfo.number}</p>`;
 
 }
 function getClassesHtml(classSubject)
@@ -105,19 +110,33 @@ function getClassesHtml(classSubject)
 }
 const allCoursesLink = document.getElementById("all");
 const cseCoursesLink = document.getElementById("cse");
-const wddCourseLink = document.getElementById("wdd");
+const wddCoursesLink = document.getElementById("wdd");
+const allCourseLinks = [allCoursesLink, cseCoursesLink, wddCoursesLink];
 
+function removeAllActiveCourse()
+{
+    allCourseLinks.map(
+        (element) => element.classList.remove("active")
+    );
+}
 allCoursesLink.addEventListener('click',() => 
 {
     getClassesHtml("ALL");
+    removeAllActiveCourse();
+    allCoursesLink.classList.add("active");
 });
 cseCoursesLink.addEventListener('click',() => 
     {
         getClassesHtml("CSE");
+        removeAllActiveCourse();
+        cseCoursesLink.classList.add("active");
     });
-wddCourseLink.addEventListener('click',() => 
-    {
-        getClassesHtml("WDD");
-    });    
+wddCoursesLink.addEventListener('click',() => 
+{
+    getClassesHtml("WDD");
+    removeAllActiveCourse();
+    wddCoursesLink.classList.add("active");
+});    
 
 getClassesHtml("ALL");
+allCoursesLink.classList.add("active");
