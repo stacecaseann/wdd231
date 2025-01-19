@@ -1,0 +1,205 @@
+:root{
+    --padding: 1rem;
+    --dark-blue: #25283d;
+    --light-blue: #D6E3F8;
+    --off-white: #fef5ef;
+    --tan: #e4bb97;
+    --medium-blue: #2D485D;
+    --header-font: "Lexend";
+    --normal-font: "Nunito";
+}
+
+body{
+    max-width: 1080px;
+    min-width: 500px;
+    font-family: var(--normal-font);
+    padding: var(--padding);
+    color: var(--dark-blue);
+    background-color: var(--light-blue);
+}
+button{
+    background-color: transparent;
+    border:none;
+}
+.main{
+    display:flex;
+    flex-direction: row;
+}
+/* button img{
+    padding: var(--padding);
+} */
+
+/* .profile{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--medium-blue);
+    padding: var(--padding);
+   
+} */
+/* .profile img{
+    width: 125px;
+    height: auto;
+} */
+h1, h2, h3{
+    text-align: center;
+    font-family: var(--header-font);
+    background-color: var(--medium-blue);
+    padding: var(--padding);
+    color:var(--off-white);
+    margin:0;
+}
+header{
+    display: grid;
+    grid-template-columns: 96px auto 44px;
+    justify-content: start;
+    /* align-items: center; */
+    /* justify-content: center;  */
+    background-color: var(--medium-blue);
+    gap:1rem;
+}
+header img{
+    padding: 16px;
+}
+.cityWords{
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    color: white;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* align-content: center; */
+    text-align: center;
+}
+.cityWords p:first-child{
+    /* margin-bottom: 0;     */
+    margin-bottom: 0;
+    color:red;
+    font-size: 1.5rem;
+    text-shadow: 4px 4px 8px rgba(129, 113, 113, 0.6);
+}
+.cityWords p:last-child{
+    /* margin-top: 0;    */
+    margin-top:0; 
+    font-size: 1.2rem;
+
+}
+
+/* section{
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--dark-blue);
+    margin: 1rem;
+}
+section h2{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+} */
+/* .hero{
+    display:flex;
+    flex-direction: row;
+    gap:1rem;
+}
+.hero section{
+    flex: 1;
+}
+.hero picture{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding);
+}
+.hero img{
+    width: 200px;
+    height: auto;
+} */
+.directory-menu
+{
+    display: flex;
+    justify-content: center;    
+    gap: 1rem;
+}
+table{
+    text-align: center;
+    padding: var(--padding);
+}
+td{
+    padding: 10px;
+    /* width: 300px; */
+}
+tr:nth-child(even) td{
+    background-color: var(--light-blue);    
+}
+tr:nth-child(odd) td{
+    background-color: var(--off-white);    
+}
+
+.icon {
+    filter: brightness(0) invert(1); /* This will turn the icon white */
+}
+/* .list
+{
+    grid-template-columns: 1fr;
+} */
+.directory
+{
+    display: grid;
+    flex:1;
+    justify-content: space-around;
+    /* align-items: space-around;
+    align-content: space-around; */
+    gap: 1rem;
+    margin: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+}
+.directory-item{
+    /* border: .5px solid black; */
+    width: auto;    
+    height: auto;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    padding:var(--padding);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.directory-item:hover{
+    transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+.directory-item img{
+    width: auto;
+    height: auto;
+    padding: 0px;
+    
+}
+.directory-item p{
+    margin: 0;
+    padding: .5rem;
+    font-weight: 300;
+}
+footer{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--medium-blue);
+    padding: var(--padding);
+    color: var(--off-white);
+}
+footer p{
+    margin: .5rem;
+}
+footer a{
+    color: white;
+    text-decoration: none;
+    transition: color .3s ease;
+}
+footer a:hover{
+    color: rgb(219, 207, 207)
+}

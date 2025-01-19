@@ -1,0 +1,25 @@
+@media screen and (min-width: 320px)
+{
+    #menu {
+        display: none; /* hide hamburger button */
+    }
+    nav{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        /* grid-template-rows: 1fr; */
+        text-align: center;
+    }
+    nav ul{
+        flex-direction: row;
+    }
+    nav.open {
+        display: flex; /* Prevent hiding due to open class */
+    }
+    /* .classList{
+        grid-template-columns: repeat(3, 1fr);
+    }*/
+    /* nav {
+        animation: expandGrid 0.5s ease-out forwards;
+    } */
+} 
