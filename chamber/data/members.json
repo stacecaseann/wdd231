@@ -6,5 +6,53 @@
 			"url":"https://boothemusic.com/",
 			"image":"boothmusic.png",
 			"membershipLevel":1	
+		},
+		{
+			"name":"Devotion Dance Academy",
+			"address":"458 S Main Street, Spanish Fork, UT 84660",
+			"phoneNumber":"801-758-8626",
+			"url":"https://devotiondanceacademy.com/",
+			"image":"devotiondance.png",
+			"membershipLevel":1	
+		},
+		{
+			"name":"The Kid Dentist",
+			"address":"497 N Main Street, Spanish FOrk, UT, 84660",
+			"phoneNumber":"801-798-2100",
+			"url":"https://thekiddentist.com/",
+			"image":"thekidsdentist.png",
+			"membershipLevel":1	
+		},
+		{
+			"name":"JMart",
+			"address":"280 N Main Street, Spanish Fork, UT 84660",
+			"phoneNumber":"801-798-6816",
+			"url":"https://jmartprint.com/",
+			"image":"jmart.png",
+			"membershipLevel":1	
+		},
+		{
+			"name":"Big O Tires",
+			"address":"570 N Main Street, Spanish Fork, UT, 84660",
+			"phoneNumber":"801-798-9827",
+			"url":"https://www.bigotires.com/location/ut/spanish-fork/570-n-main-st-84660/044237",
+			"image":"bigotires.png",
+			"membershipLevel":1	
+		},
+		{
+			"name":"Pacific Horizon Credit Union",
+			"address":"375 E 300 S, Spanish Fork, UT 84660",
+			"phoneNumber":"801-615-7234",
+			"url":"https://pacifichorizoncu.com/",
+			"image":"pacifichorizon.png",
+			"membershipLevel":1	
+		},
+		{
+			"name":"The Oaks",
+			"address":"2300 East Powerhouse Road, 84660",
+			"phoneNumber":"801-804-4653",
+			"url":"https://www.theoaksatsf.com/",
+			"image":"theoaks.png",
+			"membershipLevel":1	
 		}
 	]

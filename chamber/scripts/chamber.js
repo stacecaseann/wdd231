@@ -1,4 +1,4 @@
-let directoryElement = document.querySelector(".directory");
+let directoryElement = document.querySelector(".grid");
 const gridButton = document.querySelector("#gridButton");
 const listButton = document.querySelector("#listButton");
 const alphabetElement = document.querySelector(".alphabet");
@@ -32,7 +32,7 @@ function createAlphabetDirectory()
 
 function createDirectoryCardForGrid(companyData)
 {
-    return `<div class="directory-item">
+    return `<div class="grid-item">
     <img src="images/${companyData.image}" width="200" height="100" alt="${companyData.name}">
     <p>${companyData.address}</p>
     <p>${companyData.phoneNumber}</p>
@@ -41,7 +41,6 @@ function createDirectoryCardForGrid(companyData)
 }
 function createDirectoryItemForList(companyData)
 {
-    //NEED The outside <table>
     return `<tr><td>${companyData.name}</td>
     <td>${companyData.address}</td>
     <td>${companyData.phoneNumber}</td>
@@ -73,23 +72,30 @@ async function printCompanyData(filter){
         companiesFiltered = companies.filter( (company) =>
             company.name.toLowerCase().startsWith(filter.toLowerCase())
         );
-    }    
-    if (directoryElement.classList.contains('list'))
+    } 
+    if (companiesFiltered.length == 0)
     {
-        const companyHtml = companiesFiltered.map( (companyData) => 
-        {
-            return createDirectoryItemForList(companyData);
-        });
-        directoryElement.innerHTML = `<table>${companyHtml.join('')}</table>`;
-    }
-    else if (directoryElement.classList.contains('grid'))
+        directoryElement.innerHTML = "<p>There are no items returned.</p>"
+    }   
+    else
     {
-        // console.log(createDirectoryCardForGrid(companiesFiltered[0]));
-        const companyHtml = companiesFiltered.map( (companyData) => 
+        if (directoryElement.classList.contains('list'))
         {
-             return createDirectoryCardForGrid(companyData)
-        });
-        directoryElement.innerHTML = companyHtml.join('');
+            const companyHtml = companiesFiltered.map( (companyData) => 
+            {
+                return createDirectoryItemForList(companyData);
+            });
+            directoryElement.innerHTML = `<table>${companyHtml.join('')}</table>`;
+        }
+        else if (directoryElement.classList.contains('grid'))
+        {
+            // console.log(createDirectoryCardForGrid(companiesFiltered[0]));
+            const companyHtml = companiesFiltered.map( (companyData) => 
+            {
+                return createDirectoryCardForGrid(companyData)
+            });
+            directoryElement.innerHTML = companyHtml.join('');
+        }
     }
 }
 
