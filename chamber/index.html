@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="styles/chamber.css">
     <link rel="stylesheet" href="styles/menu.css">
     <link rel="stylesheet" href="styles/menu-large.css">
-    <script type="module" defer src="scripts/directory.js"></script>
+    <script type="module" defer src="scripts/weather.js"></script>
+    <script type="module" src="scripts/footer.js" defer></script>
+    <script defer src="scripts/menu.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="WDD 231 - Stacy Yarrington">
@@ -15,7 +17,7 @@
     <meta property="og:title" content="Spanish Fork Chamber of Commerce">
     <meta property="og:type" content="website">
     <!-- <meta property="og:url" content="https://www.imdb.com/title/tt0117500/">
-    <meta property="og:image" content="/images/rock.jpg"> -->
+    <meta property="og:image" content="stacecase.,\wdd231\chamber\images\spanish-fork.webp"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;300&family=Nunito:wght@100;300;400&display=swap" rel="stylesheet">
@@ -33,26 +35,53 @@
     <main>
         <nav id="animate-me">
             <ul>
+                <!-- *** Call to Action *** -->
                 <li><a href="#">Home</a></li>
                 <li><a href="directory.html" class="active">Directory</a></li>
                 <li><a href="h#">Join</a></li>
                 <li><a href="#">Discover</a></li>
             </ul>
         </nav>
-        <div class="directory-menu">
-            <button id="gridButton">
-                <img src="images/icons8-grid-50.png" width="35" height="35" alt="Grid Button">
-            </button>
-            <button id="listButton">
-                <img src="images/icons8-list-50.png" width="35" height="35" alt="List Button">
-            </button>
+        <div class="hero">
+        <div class="placeHolderHero">
+        <p class="placeOnTop">Test caption on top</p>
+    </div>
+<!-- <p>put a caption over it</p> -->
         </div>
-        <div class="main">
-            <div class="alphabet">
+        <div class="mainGrid">
+            <div class="weather-card">
+                <h2>Events</h2>
+                <div class="event-details"></div>
             </div>
-            <div class="grid">
+            <div class="weather-card">
+                <h2>Current Weather</h2>
+                <div class="weather-details">
+                    <!-- <div class="weather-column">
+                        <img src="https://openweathermap.org/img/wn/04n@2x.png" width="100" height="100" alt="weather icon">
+                    </div>
+                    <div class="weather-column">
+                        <p class="highlight">273.31&deg;</p>
+                        <p class="title-case">overcast clouds</p>
+                        <p>High: 274.42&deg;</p>
+                        <p>Low: 271.99&deg;</p>
+                        <p>Humidity: 52%</p>
+                        <p>Sunrise: Friday, January 24, 2025 at 7:41 AMam</p>
+                        <p>Sunset: Friday, January 24, 2025 at 5:35 PMpm</p>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="weather-card">
+                <h2>Weather Forecast</h2>
+                <div class="weather-forecast"></div>
             </div>
         </div>
+        <div class="businessCards">
+            <div class="businessPlaceHolder"></div>
+            <div class="businessPlaceHolder"></div>
+            <div class="businessPlaceHolder"></div>
+        </div>
+          
     </main>
     <footer>
         <p>©<span class="year"></span> 😀 Stacy Yarrington UT 😀</p>

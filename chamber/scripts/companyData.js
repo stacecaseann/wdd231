@@ -1,34 +1,4 @@
-let directoryElement = document.querySelector(".grid");
-const gridButton = document.querySelector("#gridButton");
-const listButton = document.querySelector("#listButton");
-const alphabetElement = document.querySelector(".alphabet");
-
 const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-
-function createAlphabetDirectory()
-{
-    let alphabetHtml = `<table><tr><td colspan="3" class="clear">Clear Filter</td></tr><tr>`;
-    alphabet.forEach((item, index) => {
-        alphabetHtml += `<td class="alphabetFilter" id="${item}">${item}</td>`;
-        if ((index + 1) % 3 === 0)
-        {
-            alphabetHtml +="</tr><tr>";
-        }
-    });
-    // const alphabetHtml = alphabet.map( (item, index) => 
-    // {
-    //     return createAlphabetItem(item, index);
-    // });
-    //const filter = `<table><tr>${alphabetHtml.join('')}</tr></table>`;
-    alphabetElement.innerHTML = alphabetHtml;//filter;
-
-    const clearElement = document.querySelector(".clear");
-    clearElement.addEventListener('click', () => 
-        {
-            printCompanyData("ALL");
-        });
-
-}
 
 function createDirectoryCardForGrid(companyData)
 {
@@ -64,7 +34,7 @@ async function getCompanyData(){
     }
 }
 
-async function printCompanyData(filter){
+export async function printCompanyData(filter, directoryElement){
     const companies = await getCompanyData();
     let companiesFiltered = companies;
     if (filter != "ALL")
@@ -99,30 +69,22 @@ async function printCompanyData(filter){
     }
 }
 
-printCompanyData("ALL");
-createAlphabetDirectory();
-
-
-gridButton.addEventListener('click', () => 
+export function createAlphabetDirectory(alphabetElement, directoryElement)
 {
-    directoryElement.classList.remove('list');
-    directoryElement.classList.add('grid');
-    printCompanyData("ALL");
-});
-
-listButton.addEventListener('click', () => 
-    {
-        directoryElement.classList.remove('grid');
-        directoryElement.classList.add('list');
-        printCompanyData("ALL");
-    });
-
-const alphabetFilterItems = document.querySelectorAll(".alphabetFilter");
-alphabetFilterItems.forEach( (item) => 
-    {
-        item.addEventListener('click', () => 
+    let alphabetHtml = `<table><tr><td colspan="3" class="clear">Clear Filter</td></tr><tr>`;
+    alphabet.forEach((item, index) => {
+        alphabetHtml += `<td class="alphabetFilter" id="${item}">${item}</td>`;
+        if ((index + 1) % 3 === 0)
         {
-            const filterId = item.id;
-            printCompanyData(filterId);
-        });       
-});
+            alphabetHtml +="</tr><tr>";
+        }
+    });
+    alphabetElement.innerHTML = alphabetHtml;//filter;
+
+    const clearElement = alphabetElement.querySelector(".clear");
+    clearElement.addEventListener('click', () => 
+        {
+            printCompanyData("ALL", directoryElement);
+        });
+
+}
