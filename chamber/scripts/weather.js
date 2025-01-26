@@ -42,11 +42,13 @@ export async function loadWeatherData(weatherElement, forecastElement)
 function createWeatherForecastCard(forecast, weatherElement)
 {    
     let forecastHtml = `<div class="weather-column">`;
-    for (let i=0; i<2; i++)
+    for (let i=0; i<=2; i++)
     {
         const dailyData = forecast.list[i];
-        const todayDateStr = dailyData.dt;
-        const todayDate = new Date(todayDateStr * 1000);
+        let todayDate = new Date();
+        todayDate.setDate(todayDate.getDate() + i);
+        // const todayDateStr = dailyData.dt;
+        // const todayDate = new Date(todayDateStr * 1000);
         const temp = dailyData.main.temp;
         const icon = dailyData.weather[0].icon;
         const iconPath = `https://openweathermap.org/img/wn/${icon}@2x.png`;

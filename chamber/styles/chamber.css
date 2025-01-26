@@ -245,7 +245,11 @@ tr:nth-child(odd) td{
     transform: translate(-30%, -10%); 
     color: white; /* Text color */
     background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background*/
-
+    border-radius: 1rem;
+}
+.place-on-top a{
+    text-decoration: none;
+    color: white;
 }
 footer{
     display:flex;

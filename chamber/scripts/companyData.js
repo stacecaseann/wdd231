@@ -120,6 +120,7 @@ export async function getFilteredCompanyDataCardHtml(companyIndex)
 
 function createCompanyDataCardHtml(companyData)
 {
+    const memberShipLevel = companyData.memberShipLevel == 1 ? "Silver" : "Gold";
     const companyCardHtml = `<div class="business-card">
     <h3>${companyData.name}</h3>
     <p>${companyData.tagLine}</p>
@@ -132,6 +133,7 @@ function createCompanyDataCardHtml(companyData)
                 <p><span class="highlight">EMAIL:</span> ${companyData.email}</p>
                 <p><span class="highlight">PHONE:</span> ${companyData.phoneNumber}</p>
                 <p><span class="highlight">URL:</span> <a href="${companyData.url}">${companyData.name}</a></p>
+                <p><span class="highlight">MEMBERSHIP:</span> ${memberShipLevel}</p>
             </div>
         </div>
     </div>`
