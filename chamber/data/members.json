@@ -4,31 +4,47 @@
 			"address":"135 N Main St, Spanish Fork, UT 84660",
 			"phoneNumber":"801-473-5074",
 			"url":"https://boothemusic.com/",
+			"tagLine":"Local Music",
 			"image":"boothmusic.png",
-			"membershipLevel":1	
+			"icon": "musical-note.png",
+			"email":"boothemusic@gmail.com",
+			"iconAttribution":"<a href=\"https://www.flaticon.com/free-icons/musical-note\" title=\"musical note icons\">Musical note icons created by Freepik - Flaticon</a>",
+			"membershipLevel":1
 		},
 		{
 			"name":"Devotion Dance Academy",
 			"address":"458 S Main Street, Spanish Fork, UT 84660",
 			"phoneNumber":"801-758-8626",
 			"url":"https://devotiondanceacademy.com/",
+			"tagLine":"Passion for Dance",
 			"image":"devotiondance.png",
-			"membershipLevel":1	
+			"icon": "ballet-shoes.png",
+			"email":"devotiondance@gmail.com",
+			"iconAttribution":"<a href=\"https://www.flaticon.com/free-icons/ballet\" title=\"ballet icons\">Ballet icons created by justicon - Flaticon</a>",		
+			"membershipLevel":2	
 		},
 		{
 			"name":"The Kid Dentist",
 			"address":"497 N Main Street, Spanish FOrk, UT, 84660",
 			"phoneNumber":"801-798-2100",
 			"url":"https://thekiddentist.com/",
+			"tagLine":"Home of Utah County’s Most-Trusted Pediatric Dentists",
 			"image":"thekidsdentist.png",
-			"membershipLevel":1	
+			"icon": "dentist.png",
+			"email":"thekiddentist@gmail.com",
+			"iconAttribution":"<a href=\"https://www.flaticon.com/free-icons/dentist\" title=\"dentist icons\">Dentist icons created by Flat Icons - Flaticon</a>",
+			"membershipLevel":3
 		},
 		{
 			"name":"JMart",
 			"address":"280 N Main Street, Spanish Fork, UT 84660",
 			"phoneNumber":"801-798-6816",
 			"url":"https://jmartprint.com/",
+			"tagLine":"Helping clients with their printing, copying & banner needs.",
 			"image":"jmart.png",
+			"icon": "printer.png",
+			"email":"jmart@gmail.com",
+			"iconAttribution":"<a href=\"https://www.flaticon.com/free-icons/fax\" title=\"fax icons\">Fax icons created by th studio - Flaticon</a>",
 			"membershipLevel":1	
 		},
 		{
@@ -36,23 +52,35 @@
 			"address":"570 N Main Street, Spanish Fork, UT, 84660",
 			"phoneNumber":"801-798-9827",
 			"url":"https://www.bigotires.com/location/ut/spanish-fork/570-n-main-st-84660/044237",
+			"tagLine":"The Team You Trust",
 			"image":"bigotires.png",
-			"membershipLevel":1	
+			"icon": "car.png",
+			"email":"bigotires@gmail.com",
+			"iconAttribution":"<a href=\"https://www.flaticon.com/free-icons/wheel\" title=\"wheel icons\">Wheel icons created by mynamepong - Flaticon</a>",
+			"membershipLevel":2
 		},
 		{
 			"name":"Pacific Horizon Credit Union",
 			"address":"375 E 300 S, Spanish Fork, UT 84660",
 			"phoneNumber":"801-615-7234",
 			"url":"https://pacifichorizoncu.com/",
+			"tagLine":"Banking you can trust",
 			"image":"pacifichorizon.png",
-			"membershipLevel":1	
+			"icon": "bank.png",
+			"email":"pacific@gmail.com",
+			"iconAttribution":"<a href=\"https://www.flaticon.com/free-icons/bank\" title=\"bank icons\">Bank icons created by Freepik - Flaticon</a>",
+			"membershipLevel":3	
 		},
 		{
 			"name":"The Oaks",
 			"address":"2300 East Powerhouse Road, 84660",
 			"phoneNumber":"801-804-4653",
 			"url":"https://www.theoaksatsf.com/",
+			"tagLine":"Golf in your hometown",
 			"image":"theoaks.png",
-			"membershipLevel":1	
+			"icon": "golfing.png",
+			"email":"golf@gmail.com",
+			"iconAttribution":"<a href=\"https://www.flaticon.com/free-icons/golf\" title=\"golf icons\">Golf icons created by Freepik - Flaticon</a>",
+			"membershipLevel":3
 		}
 	]

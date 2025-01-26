@@ -21,7 +21,7 @@ async function apiFetch(url)
         console.log(error);
     }
 }
-export async function loadWeatherData()
+export async function loadWeatherData(weatherElement, forecastElement)
 {
     try{
         
@@ -31,18 +31,16 @@ export async function loadWeatherData()
                 apiFetch(forecastUrl)
             ]);
         
-        createWeatherCard(weatherData);
-        createWeatherForecastCard(weatherForecast);
+        createWeatherCard(weatherData, weatherElement);
+        createWeatherForecastCard(weatherForecast, forecastElement);
     }
     catch(error)
     {
         console.log(error);
     }
 }
-function createWeatherForecastCard(forecast)
-{
-    const weatherElement = document.querySelector(".weather-forecast");
-    
+function createWeatherForecastCard(forecast, weatherElement)
+{    
     let forecastHtml = `<div class="weather-column">`;
     for (let i=0; i<2; i++)
     {
@@ -62,9 +60,8 @@ function createWeatherForecastCard(forecast)
     forecastHtml += `</div>`;
     weatherElement.innerHTML = forecastHtml;
 }
-function createWeatherCard(weatherData)
+function createWeatherCard(weatherData, weatherElement)
 {
-    const weatherElement = document.querySelector(".weather-details");
     //const jsonObject = JSON.parse(weatherData);
     const weatherDesc = weatherData.weather[0].description;
     //TODO change the desc to Title case
@@ -81,7 +78,7 @@ function createWeatherCard(weatherData)
     const sunriseTime = date.toLocaleString('en-US', { timeStyle: 'short' });
     const sunsetTime = date2.toLocaleString('en-US', { timeStyle: 'short' });
     const weatherHtml = `<div class="weather-column">
-    <img src="${iconPath}" width="150" height="150" alt="weather icon">
+    <img src="${iconPath}" width="100" height="100" alt="weather icon">
     </div>
     <div class="weather-column">
     <p class="highlight">${temp}&deg; F</p>

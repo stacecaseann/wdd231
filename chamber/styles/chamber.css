@@ -11,44 +11,31 @@
 
 body{
     max-width: 1080px;
-    min-width: 500px;
+    /* min-width: 500px; */
     font-family: var(--normal-font);
     padding: var(--padding);
     color: var(--dark-blue);
     background-color: var(--light-blue);
+    box-sizing: border-box; 
 }
 button{
     background-color: transparent;
     border:none;
 }
-.main{
-    display:flex;
-    flex-direction: row;
-}
-/* button img{
-    padding: var(--padding);
-} */
-
-/* .profile{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    background-color: var(--medium-blue);
-    padding: var(--padding);
-   
-} */
-/* .profile img{
-    width: 125px;
-    height: auto;
-} */
-h1, h2, h3{
+h1, h2{
     text-align: center;
     font-family: var(--header-font);
     background-color: var(--medium-blue);
     padding: var(--padding);
     color:var(--off-white);
     margin:0;
+}
+h3{
+    text-align: center;
+    font-family: var(--header-font);
+    font-size: 1.25rem;
+    padding: .5rem;
+    margin: 0;
 }
 header{
     display: grid;
@@ -58,6 +45,12 @@ header{
     /* justify-content: center;  */
     background-color: var(--medium-blue);
     gap:1rem;
+}
+.highlight{
+    font-weight: bold;
+}
+.title-case{
+    text-transform: capitalize;
 }
 header img{
     padding: 16px;
@@ -81,6 +74,10 @@ header img{
     margin-top:0; 
     font-size: 1.2rem;
 
+}
+.directory-main{
+    display:flex;
+    flex-direction: row;
 }
 .directory-menu
 {
@@ -154,111 +151,102 @@ tr:nth-child(odd) td{
     padding: .5rem;
     font-weight: 300;
 }
-.mainGrid{
-    display:flex;
-    justify-content: space-between;
+.business-card-grid{
+    display:grid;
+    grid-template-columns: 1fr;
     gap:10px;
     margin:1rem;
     align-items: stretch;
 }
-
-.weather-card{
+.business-cards{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    margin:1rem;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+.weather-card, .business-card{
     display:flex;
     flex:1;
     flex-direction: column;
-    background-color: white;
+    background-color:white;    
+    overflow: hidden;
+    /* margin:1rem; */
 }
-.weather-details, .weather-forecast, .event-details {
-    display:flex;
-    background-color: white;
-    height:100%;
+.business-card
+{
+    border-radius: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.2);
+    /* max-width: 400px; */
     /* flex:1; */
 }
-.weather-column{
-    flex:1;
+.weather-details, .weather-forecast, .event-details{
+    display:flex;
+    background-color: #c2afa3;
+    justify-content: center;
+    align-items: center;
+    height:100%;    
+    color:black;
+    /* flex:1; */
+}
+.event-details{
+    flex-direction: column;
+}
+.business-card-details
+{
+    display:flex;
+    flex-direction: row;
+}
+.weather-column, .business-card-column{
+    /* flex:1; */
     display:flex;
     flex-direction: column;
     justify-content: start;
     /* background-color: white; */
-    margin: .5rem;
+    margin-bottom: .5rem;
     height: 100%;
+    margin-top: 1rem;
+    
     /* align-items: center; */   
+}
+
+.line {
+    border-bottom: 1px solid var(--dark-blue);
 }
 .weather-column p{
     margin: .5rem;
+    /* text-align: center; */
 }
-/* .weather-column img {
-    align-self: center; 
-} */
-.highlight{
-    font-weight: bold;
-}
-.title-case{
-    text-transform: capitalize;
-}
-/* .placeHolderCard
+.business-card p
 {
-    display:flex;
-    flex:1;
-    flex-direction: column;
-} */
+    margin: .5rem;
+    text-align: center;
+}
+.business-card img{
+    margin: .5rem;
+}
+
 .hero{
     position:relative;
     display:flex;
     justify-content: center;
     align-items: center;
 }
-.placeHolderHero{
-    display: flex;
-
+.hero img{
+    width: 100%;
+    height:auto;
 }
-.placeHolderHero{
-    display:flex;
-    background-color: pink;
-    height: 300px;
-    width: 900px;
-    /* width: 100%; */
-    /* width: calc(100% - 2rem); */
-    margin:1rem;
-    justify-content: space-between;
-    box-sizing: border-box;/*Didn't work*/
-
-}
-.placeOnTop{
+.place-on-top{
     position:absolute;
-    bottom: 10%; /* Center vertically */
-    right: 10%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjusts to the center */
+    bottom: 5%; /* Center vertically */
+    right: 5%; /* Center horizontally */
+    padding: 1rem;
+    transform: translate(-30%, -10%); 
     color: white; /* Text color */
     background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background*/
-}
-.eventsPlaceHolder{
-    background-color: lightgreen;
-    height: 200px;
-    width: 100%;
-}
-.weatherPlaceHolder{
-    background-color: lightblue;
-    height: 200px;
-    width: 100%;
-}
-.weatherForecastPlaceHolder{
-    background-color: lightgray;
-    height: 200px;
-    width: 100%;
-}
-.businessCards{
-    display:flex;
-    flex-direction: row;
-    gap:10px;
-    margin:1rem;
-}
-.businessPlaceHolder{
-    background-color: lightcoral;
-    height: 150px;
-    width: 100%;
-}
 
+}
 footer{
     display:flex;
     flex-direction: column;

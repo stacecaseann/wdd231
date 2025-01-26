@@ -1,5 +1,6 @@
 const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-
+let cachedData = null;
+let cachedFilteredData = null;
 function createDirectoryCardForGrid(companyData)
 {
     return `<div class="grid-item">
@@ -17,7 +18,23 @@ function createDirectoryItemForList(companyData)
     <td><a href="${companyData.url}">${companyData.name}</a></td>
     </tr>`;
 }
+async function getFilteredCompanyData()
+{
+    if (cachedFilteredData)
+    {
+        return cachedFilteredData;
+    }
+    const companyData = await getCompanyData();
+    const filteredData = companyData.filter(
+        (data) => data.membershipLevel >= 2
+    )
+    cachedFilteredData = filteredData;
+    return filteredData;
+}
 async function getCompanyData(){
+    if (cachedData){
+        return cachedData;
+    }
     try
     {
         const response = await fetch("data/members.json");
@@ -26,6 +43,7 @@ async function getCompanyData(){
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         console.log(data);
+        cachedData = data;
         return data;
     }
     catch(error)
@@ -87,4 +105,53 @@ export function createAlphabetDirectory(alphabetElement, directoryElement)
             printCompanyData("ALL", directoryElement);
         });
 
+}
+
+export async function getFilteredCompanyDataCardHtml(companyIndex)
+{
+    const data = await getFilteredCompanyData();
+    if (companyIndex < data.length)//todo, test this
+    {
+        const companyData = data[companyIndex];
+        const html = createCompanyDataCardHtml(companyData);
+        return html;
+    }
+}
+
+function createCompanyDataCardHtml(companyData)
+{
+    const companyCardHtml = `<div class="business-card">
+    <h3>${companyData.name}</h3>
+    <p>${companyData.tagLine}</p>
+    <div class="line"></div>
+    <div class="business-card-details">
+        <div class="business-card-column">
+            <img src="images/${companyData.icon}" width="75" height="75" alt="${companyData.name} logo">
+        </div>
+            <div class="business-card-column">
+                <p><span class="highlight">EMAIL:</span> ${companyData.email}</p>
+                <p><span class="highlight">PHONE:</span> ${companyData.phoneNumber}</p>
+                <p><span class="highlight">URL:</span> <a href="${companyData.url}">${companyData.name}</a></p>
+            </div>
+        </div>
+    </div>`
+    return companyCardHtml;
+}
+export async function getFilteredCompanyDataArraySize()
+{
+    const data = await getFilteredCompanyData();
+    return data.length;
+}
+export async function getIconAttributionsHtml(iconIndexes)
+{
+    const data = await getFilteredCompanyData();
+    const result = iconIndexes.map(index => data[index].iconAttribution);
+    console.log("icon attributions" + result);
+    const htmlArray = result.map( (attribution) => createAttributionHtml(attribution));
+
+    return htmlArray.join('');
+}
+function createAttributionHtml(attribution)
+{
+    return `<p>${attribution}<\p>`;
 }
