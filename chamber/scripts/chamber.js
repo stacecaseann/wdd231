@@ -13,10 +13,10 @@ populateEvents();
 const footerAttributionElement = document.querySelector("#icon-attributions");
 const weatherElement = document.querySelector(".weather-details");
 const forecastElement = document.querySelector(".weather-forecast");
-loadWeatherData(weatherElement, forecastElement);
+//loadWeatherData(weatherElement, forecastElement);
 
 const companyCardsElement = document.querySelector(".business-cards");
-createCompanyCards();
+//createCompanyCards();
 
 async function populateEvents()
 {
