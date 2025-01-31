@@ -44,16 +44,26 @@ function createWeatherForecastCard(forecast, weatherElement)
     let forecastHtml = `<div class="weather-column">`;
     for (let i=0; i<=2; i++)
     {
-        const dailyData = forecast.list[i];
-        let todayDate = new Date();
-        todayDate.setDate(todayDate.getDate() + i);
+        const todayDate = new Date();
+        const todayDateObject = new Date(todayDate);
+
+        todayDateObject.setDate(todayDateObject.getDate() + i);
+        const todayDateString = todayDateObject.toISOString().split('T')[0];
+        const todayValues = forecast.list.filter(
+            record => record.dt_txt.startsWith(todayDateString));
+        const dailyData = todayValues.reduce(
+            (maxRecord, currentRecord) => 
+            {
+                return currentRecord.main.temp > maxRecord.main.temp ? currentRecord : maxRecord;
+            }
+        );
         // const todayDateStr = dailyData.dt;
         // const todayDate = new Date(todayDateStr * 1000);
         const temp = dailyData.main.temp;
         const icon = dailyData.weather[0].icon;
         const iconPath = `https://openweathermap.org/img/wn/${icon}@2x.png`;
         forecastHtml += `
-        <p>${i == 0 ? "Today" : todayDate.toLocaleString('en-US', { weekday: 'long' })}: 
+        <p>${i == 0 ? "Today" : todayDateObject.toLocaleString('en-US', { weekday: 'long' })}: 
         <span class="highlight">${temp}&deg; F</span></p>
         <p>     <img src="${iconPath}" width="50" height="50" alt="weather icon"></p>
         `;
@@ -70,8 +80,6 @@ function createWeatherCard(weatherData, weatherElement)
     const icon = weatherData.weather[0].icon;
     const iconPath = `https://openweathermap.org/img/wn/${icon}@2x.png`;
     const temp = weatherData.main.temp;
-    const low = weatherData.main.temp_min;
-    const high = weatherData.main.temp_max;
     const humidity = weatherData.main.humidity;
     const sunrise = weatherData.sys.sunrise;
     const sunset = weatherData.sys.sunset;
@@ -85,8 +93,6 @@ function createWeatherCard(weatherData, weatherElement)
     <div class="weather-column">
     <p class="highlight">${temp}&deg; F</p>
     <p class="title-case">${weatherDesc}</p>
-    <p>High: ${high}&deg; F</p>
-    <p>Low: ${low}&deg; F</p>
     <p>Humidity: ${humidity}%</p>
     <p>Sunrise: ${sunriseTime}</p>
     <p>Sunset: ${sunsetTime}</p>
