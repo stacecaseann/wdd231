@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="styles/homepage.css">
     <link rel="stylesheet" href="styles/homepage-large.css">
+    <link rel="stylesheet" href="styles/animations.css">
     <script defer src="scripts/homepage.js"></script>
     <script defer src="scripts/dates.js"></script>
     <script defer src="scripts/menu.js"></script>
@@ -25,7 +26,10 @@
     <header>
         <div class = "menuContainer">
         <div class="profile">
-            <img src="images/profile.jpg" width="200" height="200" alt="Profile Picture">
+            <div class="bee-container">
+                <img class="bee" src="images/bee.png" width="25" height="25" alt="Logo">
+            </div>
+            <img class="profile-pic" src="images/profile.jpg" width="200" height="200" alt="Profile Picture">
             <h1>Stacy Yarrington</h1>
         </div>
         <button id="menu" aria-label="Open Menu"></button>
@@ -75,6 +79,9 @@
             </div>
             <p class="classCredits"></p>
         </section>
+
+        
+        <div class="dialogContainer"></div>
     </main>
     <footer>
         <p>©<span class="year"></span> 😀 Stacy Yarrington UT 😀</p>
