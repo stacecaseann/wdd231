@@ -1,0 +1,27 @@
+@keyframes moveLogo {
+    0% {
+        top: 100%; /* Start at bottom-right of container */
+        left: 100%;
+    }
+    100% {
+        top: 0%; /* Move to the top-left of the container */
+        left: 0%;
+    }
+}
+.bee{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    animation: moveLogo 5s ease-in-out infinite;
+}
+.bee-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width:100%;
+    overflow: hidden;   
+}

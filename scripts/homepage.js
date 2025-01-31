@@ -1,5 +1,6 @@
 const courses = [
     {
+        id: 0,
         subject: 'CSE',
         number: 110,
         title: 'Introduction to Programming',
@@ -12,6 +13,7 @@ const courses = [
         completed: true
     },
     {
+        id: 1,
         subject: 'WDD',
         number: 130,
         title: 'Web Fundamentals',
@@ -25,6 +27,7 @@ const courses = [
         completed: true
     },
     {
+        id: 2,
         subject: 'CSE',
         number: 111,
         title: 'Programming with Functions',
@@ -37,6 +40,7 @@ const courses = [
         completed: true
     },
     {
+        id: 3,
         subject: 'CSE',
         number: 210,
         title: 'Programming with Classes',
@@ -49,6 +53,7 @@ const courses = [
         completed: true
     },
     {
+        id: 4,
         subject: 'WDD',
         number: 131,
         title: 'Dynamic Web Fundamentals',
@@ -63,6 +68,7 @@ const courses = [
         completed: true
     },
     {
+        id: 5,
         subject: 'WDD',
         number: 231,
         title: 'Frontend Web Development I',
@@ -80,12 +86,12 @@ const courses = [
 
 function getClassTemplate(classInfo)
 {
-    let classTakenHtml="";
+    let classTaken="";
     if (classInfo.completed)
-        classTakenHtml = `class="classTaken"`;
+        classTaken = "class-taken";
     else
-        classTakenHtml = `class="classNotTaken"`;
-    return `<p ${classTakenHtml}>${classInfo.subject} ${classInfo.number}</p>`;
+        classTaken = "class-not-taken";
+    return `<button class="button open-button ${classTaken}" id=${classInfo.id}>${classInfo.subject} ${classInfo.number}</button>`;
 
 }
 function getClassesHtml(classSubject)
@@ -103,6 +109,7 @@ function getClassesHtml(classSubject)
             (total, course) => total + Number(course.credits),0
         );
         classCreditElement.innerHTML= `Total Credits: ${credits}`;
+        //createClassCourseDialogs(courses);
     }
     else
     {
@@ -118,6 +125,7 @@ function getClassesHtml(classSubject)
             (total, course) => total + Number(course.credits),0
         );
         classCreditElement.innerHTML= `Total Credits: ${credits}`;
+        //createClassCourseDialogs(credits);
     }
 }
 
@@ -153,3 +161,43 @@ wddCoursesLink.addEventListener('click',() =>
 
 getClassesHtml("ALL");
 allCoursesLink.classList.add("active");
+
+/*courses*/
+const modal = document.querySelector("#modal");
+/* this is the id on the dialog*/
+const openModal = document.querySelectorAll(".open-button");
+/* this is the other button*/
+// const closeModal = document.querySelector(".close-button");
+/* this is the class on the close button in the dialog*/
+
+function getClassCourseCardHtml(classInfo){
+    const technologyString = classInfo.technology.map(
+        (tech) => tech
+    );
+    return `<h2>${classInfo.subject} ${classInfo.number}</h2>
+    <p><span class="highlight">${classInfo.title}</span></p>
+    <p><span class="highlight">Credits:</span> ${classInfo.credits}</p>
+    <p>${classInfo.description}</p>    
+    <p><span class="highlight">Technologies:</span> ${technologyString.join(", ")}</p>
+    <button class="close-button">X</button>`;
+    
+}
+const dialogContainer = document.querySelector(".dialogContainer");
+// modal.innerHTML = getClassCourseCardHtml(courses[0]);
+openModal.forEach( (openButton) => {
+    openButton.addEventListener("click", (event) => {
+  const clickedButtonId = event.target.id;
+  const dialogElement = document.createElement("dialog");
+  dialogElement.innerHTML = getClassCourseCardHtml(courses[clickedButtonId]);
+  dialogContainer.appendChild(dialogElement);
+  const closeButton = dialogElement.querySelector(".close-button");
+  closeButton.addEventListener("click", () => {
+    dialogElement.close();
+    dialogElement.remove();
+  });
+
+  dialogElement.showModal();
+});
+});
+
+
