@@ -44,13 +44,21 @@ function createWeatherForecastCard(forecast, weatherElement)
     let forecastHtml = `<div class="weather-column">`;
     for (let i=0; i<=2; i++)
     {
+
         const todayDate = new Date();
         const todayDateObject = new Date(todayDate);
 
         todayDateObject.setDate(todayDateObject.getDate() + i);
-        const todayDateString = todayDateObject.toISOString().split('T')[0];
+        //const todayDateString = todayDateObject.toISOString().split('T')[0];
+        const todayDateString = todayDateObject.toLocaleDateString('en-US');
         const todayValues = forecast.list.filter(
-            record => record.dt_txt.startsWith(todayDateString));
+            record => 
+                {
+                    const date = record.dt;
+                    const localTime = new Date(date * 1000);
+                    const localTimeString = localTime.toLocaleDateString('en-US');
+                    return localTimeString.startsWith(todayDateString);
+                });
         const dailyData = todayValues.reduce(
             (maxRecord, currentRecord) => 
             {

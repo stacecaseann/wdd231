@@ -39,6 +39,9 @@
     .weather-column p{
         margin-top: 0;
     }
+    .join-main{
+        flex-direction: row;
+    }
 }
 @media screen and (min-width: 1024px)
 {
@@ -46,4 +49,5 @@
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: auto;
     }
+
 }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="styles/chamber.css">
+    <link rel="stylesheet" href="styles/chamber-large.css">   
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="styles/menu-large.css"> 
+    <script type="module" src="scripts/join.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WDD 231 - Stacy Yarrington">
+    <meta name="author" content="Stacy Yarrington">
+    <title>WDD 231-Chamber Join Page - Stacy Yarrington</title>
+    <link rel="icon" href="favicon.ico">
+    <meta property="og:title" content="Spanish Fork Chamber of Commerce">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stacecaseann.github.io/wdd231/chamber/">
+    <meta property="og:image" content="https://stacecaseann.github.io/wdd231/chamber/images/spanish-fork-480.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;300&family=Nunito:wght@100;300;400&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <img src="images/clock-tower-56.png" class="icon" width="64" height="64" alt="Icon for Spanish Fork">
+        <div class="cityWords">
+            <p>Spanish Fork</p>
+            <p>Chamber of Commerce</p>
+        </div>
+        <button id="menu" aria-label="Open Menu"></button>
+    </header>
+    <main>
+        <nav id="animate-me">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="directory.html">Directory</a></li>
+                <li><a href="join.html" class="active">Join</a></li>
+                <li><a href="#">Discover</a></li>
+            </ul>
+        </nav>
+
+        <h1>Spanish Fork Chamber Of Commerce</h1>
+        <div class="join-main">
+	<form method="get" action="thankyou.html" id="join-form">
+        <fieldset>
+            <label>First name<span class="required">*</span>
+                <input type="text" name="fname" id="first-name" required autocomplete="given-name" title="Enter your first name">
+            </label>
+            <label>Last name<span class="required">*</span>
+                <input type="text" name="lname" id="last-name" required autocomplete="family-name" title="Enter your last name">
+            </label>
+            <label>Organization Title
+                <input type="text" name="title" id="title" pattern="^[A-Za-z\s-]{7,}$" autocomplete="organization-title" title="Enter the title you hold in your organiaation (at least 7 characters)">
+            </label>
+            <label>Email<span class="required">*</span>
+                <input type="email" name="email" id="email" required autocomplete="email" title="Enter your email address">
+            </label>
+            <label>Phone Number<span class="required">*</span>
+                <input type="tel" name="phone" id="phone" required placeholder="123-456-7890" pattern="(\d{3})[ -]?(\d{3})[ -]?(\d{4})" autocomplete="tel" title="Enter your 10 digit phone number">
+            </label>
+            <label>Organization<span class="required">*</span>
+                <input type="text" name="organization" id="organization" required autocomplete="organization" title="Enter the name of your oranization">
+            </label>
+            <fieldset title="Pick a membership level">
+            <legend>Membership Level<span class="required">*</span></legend>
+            <label><input type="radio" name="membership" value="np" checked required>NP Membership</label>
+            <label><input type="radio" name="membership" value="bronze" required>Bronze</label>
+            <label><input type="radio" name="membership" value="silver" required>Silver</label>
+            <label><input type="radio" name="membership" value="gold" required>Gold</label>
+            </fieldset>
+            <label>Organization Description
+                <textarea rows="3" name="description" id="description"></textarea>
+            </label>
+            <input type="hidden" name="timestamp" id="timestamp" tabindex="-1">
+            <!-- <input type="hidden" name="timestamp" id="timestamp" tabindex="-1"> -->
+            <input type="submit" value="Join Now!"></input>
+        </fieldset>
+    </form>
+
+        <div class="membership-cards">
+        <dialog class="membership-dialog" id="membership-dialog">
+            <div>
+                <h2>Sample Title</h2>
+                <button>X</button>
+            </div>
+            <p></p>
+            <p></p>
+        </dialog>
+        </div>
+    </main>
+    <footer>
+        <p>©<span class="year"></span> 😀 Stacy Yarrington UT 😀</p>
+        <p id="lastModified"></p>
+        <a href="https://www.flaticon.com/free-icons/clock-tower" title="clock tower icons">Clock tower icons created by DinosoftLabs - Flaticon</a>
+    </footer>
+</body>
+</html>
