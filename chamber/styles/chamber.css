@@ -251,10 +251,6 @@ tr:nth-child(odd) td{
     background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background*/
     border-radius: 1rem;
 }
-.place-on-top a{
-    text-decoration: none;
-    color: white;
-}
 .membership-dialog {
     width: 50%; 
     max-width: 600px;
@@ -396,6 +392,8 @@ footer a{
     text-decoration: none;
     transition: color .3s ease;
 }
-footer a:hover{
-    color: rgb(219, 207, 207)
+footer a:hover,
+.place-on-top:hover{
+    color: rgb(219, 207, 207);
+    cursor: pointer; 
 }

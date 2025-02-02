@@ -16,6 +16,12 @@ loadWeatherData(weatherElement, forecastElement);
 const companyCardsElement = document.querySelector(".business-cards");
 createCompanyCards();
 
+const joinButton = document.querySelector("#join-button");
+joinButton.addEventListener("click", () => 
+{
+    window.location.href = 'join.html';
+});
+
 async function populateEvents()
 {
     const eventsElement = document.querySelector(".event-details");
