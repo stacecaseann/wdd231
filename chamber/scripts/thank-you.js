@@ -1,6 +1,11 @@
 //http://127.0.0.1:5500/chamber/thankyou.html?fname=Stacy&lname=Yarrington
 // &title=Organization&email=stacecase%40gmail.com&phone=18014043376&organization=Enuit&membership=np&description=&timestamp=Fri+Jan+31+2025+22%3A11%3A53+GMT-0700+%28Mountain+Standard+Time%29
+import { setupMenuButton } from './menu.js';
+import { populateFooterWithDates } from './footer.js';
 import { memberships } from "./memberships.js";
+
+populateFooterWithDates();
+setupMenuButton();
 
 const currentUrl = window.location.href;
 const formInputs = currentUrl.split('?');
