@@ -1,0 +1,22 @@
+@media screen and (min-width: 768px)
+{
+    #menu {
+        display: none; /* hide hamburger button */
+    }
+    nav{
+        display:flex;
+        align-items: center;
+        /* justify-content: flex-end; */
+        /* text-align: center; */
+        grid-template-rows:1fr;
+        background-color: black;
+    }
+    nav ul{
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    nav.open {
+        display: flex; /* Prevent hiding due to open class */
+    }
+
+} 

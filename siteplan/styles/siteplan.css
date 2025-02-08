@@ -1,0 +1,194 @@
+:root{
+    --padding: 1rem;
+    --dark-green: #193819;
+    --orange: #FFA62B;
+    --brown: #53381c;
+    --light-green: #688B58;
+    --off-white: #FBF7F4;
+    --header-font: "Lora";
+    --normal-font: "Nunito Sans";
+}
+
+body{
+    max-width: 1080px;
+    /* min-width: 500px; */
+    font-family: var(--normal-font);
+    padding: var(--padding);
+    /* color: var(--dark-blue);
+    background-color: var(--light-blue); */
+    box-sizing: border-box; 
+}
+button{
+    background-color: transparent;
+    border:none;
+}
+h1, h2{
+    text-align: center;
+    font-family: var(--header-font);
+    /* background-color: var(--dark-red); */
+    padding: var(--padding);
+    color:var(--off-white);
+    margin:0;
+}
+h2{
+    background-color: var(--brown);
+}
+h3{
+    text-align: center;
+    font-family: var(--header-font);
+    font-size: 1.25rem;
+    padding: .5rem;
+    margin: 0;
+}
+table{
+    padding: 1rem;
+    /* border: 1px black solid; */
+}
+th, td
+{
+    padding: 1rem;
+    border: 1px var(--dark-green) solid;
+}
+td:first-child:not(:only-child)
+{
+    font-weight: bold;
+}
+.colors
+{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    height: 200px;
+    width: 100%;
+}
+.color-item
+{
+    flex: 1 1 20%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+.color1
+{    
+    background-color: var(--dark-green);
+    color: white;
+}
+.color2
+{
+    background-color: var(--orange);
+
+}
+.color3
+{
+    background-color: var(--brown);
+}
+.color4
+{
+    background-color: var(--light-green);
+}
+.color5
+{
+    background-color: var(--off-white);
+}
+.fonts
+{
+    display:flex;
+    flex-direction: column;
+    height: 200px;   
+    width: 100%;
+    flex-wrap:nowrap;
+    margin: 1rem 0 1rem 0;
+    
+}
+.font1
+{
+    display:flex;
+    font-family: var(--heading-font);
+    font-size:2rem;
+    flex: 1 1 auto;
+    background-color: var(--off-white);
+    align-items: center;
+    justify-content: center;
+}
+.font2
+{
+    display:flex;
+    font-family: var(--normal-font);
+    flex: 1 1 auto;
+    background-color: #dfb28a;
+    justify-content: center;
+    align-items: center;
+}
+.wireframe
+{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    /* margin: 1rem; */
+}
+
+.wireframe-item
+{
+    flex: 1 1 30%;
+
+    display: flex;
+    flex-direction: column; 
+    max-width: 30%;  
+   margin:1rem;
+   box-sizing: border-box;
+}
+.wireframe-item img {    
+    width: auto;   
+    height: 100%;  
+    padding: 1rem;
+    object-fit: cover;
+    /* max-height: 300px; */
+}
+figcaption {
+    display: flex;
+    justify-content: center;         /* Center the content in the caption */
+    align-items: center;             /* Vertically center the content */
+    width: 100%;                     /* Make the caption take up the full width of the image */
+    /* padding: 1rem;  */
+    text-align: center;    
+    background-color: var(--orange);
+    color: var(--dark-brown);  
+    box-sizing: border-box; /*THIS is the property that kept the caption from overflowing */
+    padding: 1rem;
+}
+figcaption div:first-child {
+    flex-grow: 1;                /* Make the text (Main Page) take available space */
+}
+.wireframe-item figcaption div img{
+width: 25px;
+height: 25px;
+object-fit: contain;
+margin: 0;
+padding: 0;
+}
+footer{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-green);
+    padding: var(--padding);
+    color: var(--off-white);
+}
+footer p{
+    margin: .5rem;
+}
+footer a{
+    color: white;
+    text-decoration: none;
+    transition: color .3s ease;
+}
+footer a:hover,
+.place-on-top:hover{
+    color: rgb(219, 207, 207);
+    cursor: pointer; 
+}
