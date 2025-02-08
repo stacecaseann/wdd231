@@ -42,6 +42,9 @@
     .join-main{
         flex-direction: row;
     }
+    #display-cards{
+        grid-template-columns: 1fr 1fr;
+    }
 }
 @media screen and (min-width: 1024px)
 {
@@ -49,5 +52,19 @@
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: auto;
     }
-
+    #display-cards{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .display-card
+{
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.display-card:hover{
+    transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+.display-card:not(:hover) {
+    transform: translateY(0) scale(1);
+    box-shadow: none;
+}
 }

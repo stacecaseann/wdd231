@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="styles/chamber.css">
-    <link rel="stylesheet" href="styles/chamber-large.css">   
+    <link rel="stylesheet" href="styles/chamber-large.css">
     <link rel="stylesheet" href="styles/menu.css">
-    <link rel="stylesheet" href="styles/menu-large.css"> 
-    <script type="module" src="scripts/chamber.js"></script>
+    <link rel="stylesheet" href="styles/menu-large.css">
+    <script type="module" src="scripts/discover.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="WDD 231 - Stacy Yarrington">
     <meta name="author" content="Stacy Yarrington">
-    <title>WDD 231-Chamber Directory Page - Stacy Yarrington</title>
+    <title>WDD 231-Chamber Discover Page - Stacy Yarrington</title>
     <link rel="icon" href="favicon.ico">
-    <meta property="og:title" content="Spanish Fork Chamber of Commerce">
+    <meta property="og:title" content="Plan Smart, Eat Right">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://stacecaseann.github.io/wdd231/chamber/">
     <meta property="og:image" content="https://stacecaseann.github.io/wdd231/chamber/images/spanish-fork-480.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;300&family=Nunito:wght@100;300;400&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <header>
@@ -33,47 +33,29 @@
     <main>
         <nav id="animate-me">
             <ul>
-                <!-- *** Call to Action *** -->
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="directory.html">Directory</a></li>
                 <li><a href="join.html">Join</a></li>
-                <li><a href="discover.html">Discover</a></li>
+                <li><a href="discover.html" class="active">Discover</a></li>
             </ul>
         </nav>
-        <h1>Spanish Fork Chamber Of Commerce</h1>
-        <div class="hero">
-            <picture>                
-                <source srcset="images/spanish-fork-1280.webp" media="(min-width:1080px)">
-                <source srcset="images/spanish-fork-1080.webp" media="(min-width:768px)">
-                <source srcset="images/spanish-fork-768.webp" media="(min-width:480px)">
-                <img src="images/spanish-fork-480.webp" alt="Spanish Fork" width="480" height="228">
-            </picture>
-            <button class="place-on-top" id="join-button">Join the Chamber of Commerce</button>
-        </div>
-        <div class="business-card-grid">
-            <div class="weather-card">
-                <h2>Events</h2>
-                <div class="event-details"></div>
-            </div>
-            <div class="weather-card">
-                <h2>Current Weather</h2>
-                <div class="weather-details">
+        <h2>Discover Places Nearby!</h2>
+        <h3 id="welcome-back"></h3>
+        <div id="display-cards">
+            <dialog class="display-dialog" id="display-dialog">
+                <div>
+                    <h2>Sample Title</h2>
+                    <button>X</button>
                 </div>
-            </div>
-            <div class="weather-card">
-                <h2>Weather Forecast</h2>
-                <div class="weather-forecast"></div>
-            </div>
+                <p></p>
+            </dialog>
         </div>
-        <div class="business-cards">              
-        </div>
-          
     </main>
-    <footer>
+
+        <footer>
         <p>©<span class="year"></span> 😀 Stacy Yarrington UT 😀</p>
         <p id="lastModified"></p>
         <a href="https://www.flaticon.com/free-icons/clock-tower" title="clock tower icons">Clock tower icons created by DinosoftLabs - Flaticon</a>
-        <div id="icon-attributions"></div>
     </footer>
 </body>
 </html>

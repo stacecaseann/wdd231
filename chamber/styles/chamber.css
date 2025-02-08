@@ -251,7 +251,7 @@ tr:nth-child(odd) td{
     background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background*/
     border-radius: 1rem;
 }
-.membership-dialog {
+.membership-dialog, .display-dialog {
     width: 50%; 
     max-width: 600px;
     padding: 20px;
@@ -259,12 +259,12 @@ tr:nth-child(odd) td{
     border-radius: 8px;
     background-color: var(--off-white);
 }
-.membership-dialog div{
+.membership-dialog div, .display-dialog div{
     display: grid;
     grid-template-columns: auto 44px;
     background-color: var(--medium-blue);
 }
-.membership-dialog button{
+.membership-dialog button, .display-dialog button{
     color: var(--off-white);
     margin: 0;
     border: none;
@@ -348,7 +348,8 @@ form input[type="submit"]
     margin-top: 2rem;
     animation: cards-loaded 1s ease-in;
 }
-.membership-level{
+.membership-level,
+.display-card{
     width: calc(100% - 2rem);
     padding: 1rem;
     margin: 1rem;
@@ -359,7 +360,8 @@ form input[type="submit"]
     border-radius: 0px 20px 0px 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
-.membership-level button{
+.membership-level button,
+.display-card button{
     /* margin: 1rem; */
     margin: .5rem;
     border: 1px solid var(--dark-blue);
@@ -367,9 +369,35 @@ form input[type="submit"]
     background-color: var(--light-blue);
     border-radius: 10px;
 }
-.membership-level button:hover{
+.membership-level button:hover,
+.display-card button:hover{
     transform: scale(1.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+#display-cards{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+#display-cards div{
+    display: grid;
+    grid-template-areas: 
+    "name"
+    "photograph"
+    "description"
+    "location";
+}
+#display-cards div h3{
+    grid-area: name;
+}
+#display-cards div img{
+    grid-area: photograph;
+    justify-self: center;
+}
+#display-cards div p{
+    grid-area: description;
+}
+#display-cards div address{
+    grid-area: location;
 }
 .thank-you{
     display: flex;
