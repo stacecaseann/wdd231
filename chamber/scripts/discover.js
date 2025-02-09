@@ -1,5 +1,10 @@
 import {createDiscoverCards} from './places.js'
-import { getLastVisitedTimeMessage, clearLastDate } from './localStorage.js';
+import { getLastVisitedTimeMessage } from './localStorage.js';
+import { setupMenuButton } from './menu.js';
+import { populateFooterWithDates } from './footer.js';
+
+populateFooterWithDates();
+setupMenuButton();
 
 const displayCards = document.querySelector("#display-cards");
 const displayDialog = document.querySelector("#display-dialog");
@@ -8,7 +13,6 @@ closeButton.addEventListener("click", () => displayDialog.close());
 
 createDiscoverCards(displayCards, displayDialog);
 
-// clearLastDate();
 const lastDateElement = document.querySelector("#welcome-back");
 const lastDateMessage = getLastVisitedTimeMessage();
 lastDateElement.textContent = lastDateMessage;
