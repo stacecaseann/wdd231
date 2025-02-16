@@ -1,7 +1,8 @@
 import { setupMenuButton, createNavigation } from './menu.js';
-import { printMenu, saveMealPlan, loadMealPlan } from './meal-plan.js';
+import { printMenu, loadMealPlan } from './meal-plan.js';
 import { populateFooterWithDates } from './footer.js';
-import {getFilteredRecipeCards} from './recipe-cards.js';
+import {getFilteredRecipeCards,getRecipeCardsFromFile} from './recipe-cards.js';
+
 setupMenuButton();
 populateFooterWithDates();
 const navigationElement = document.querySelector("#animate-me");
@@ -27,12 +28,34 @@ searchButton.addEventListener("click", /*async*/() =>
         //const recipeCardsHtml = 
         //TODO do i need async 
         //await getFilteredRecipeCards(recipeCardsElement, recipeDialog);
-        getFilteredRecipeCards(recipeCardsElement, recipeDialog,menuPlanElement,menuPlanDialog);
+        //TODO could create a filter class
+        let searchCriteria = getSearchCriteria();
+        
+        recipeCardsElement.replaceChildren();
+        getFilteredRecipeCards(searchCriteria,false,recipeCardsElement, recipeDialog,menuPlanElement,menuPlanDialog);
 
         //recipeCardsElement.innerHTML = recipeCardsHtml;
 })
 
+function getSearchCriteria()
+{
+    let searchCriteria = {};
+    let mealTypeSelected = "";
+    let ingredient = "";
+    const mealTypeSelectedElement = document.querySelector('input[name="mealType"]:checked');
 
+    const ingredientElement = document.getElementById("ingredient");
+    if (mealTypeSelectedElement)
+    {
+        if (mealTypeSelectedElement.value != "any")
+            mealTypeSelected = mealTypeSelectedElement.value;
+    }
+    if (ingredientElement)
+        ingredient = ingredientElement.value;
+    searchCriteria.ingredient = ingredient;
+    searchCriteria.mealType = mealTypeSelected;
+    return searchCriteria;
+}
 
 const printMenuButton = document.querySelector("#print-menu-button");
 
@@ -42,7 +65,7 @@ printMenuButton.addEventListener("click", async() =>
     //load recipes
         //const recipeCardsHtml = 
         //TODO do i need async 
-        printMenu(menuPlanElement, menuPlanDialog);
+        await printMenu(menuPlanElement, menuPlanDialog);
 
         //recipeCardsElement.innerHTML = recipeCardsHtml;
 
@@ -51,11 +74,20 @@ printMenuButton.addEventListener("click", async() =>
 document.addEventListener("DOMContentLoaded", () => 
 {
     loadMealPlan();
+    // loadCachedRecipes();
     printMenu(menuPlanElement, menuPlanDialog);
 });
 
 //TODO Get random
-getFilteredRecipeCards(recipeCardsElement, recipeDialog, menuPlanElement, menuPlanDialog);
+getRecipeCardsFromFile(recipeCardsElement, recipeDialog, menuPlanElement, menuPlanDialog);
+
+const loadMoreButton = document.querySelector("#load-more");
+loadMoreButton.addEventListener("click", () => 
+{
+    recipeCardsElement.replaceChildren();
+    getFilteredRecipeCards( getSearchCriteria(),true,recipeCardsElement, recipeDialog, menuPlanElement, menuPlanDialog)
+}
+);
 
 // document.addEventListener("beforeunload", () => 
 // {

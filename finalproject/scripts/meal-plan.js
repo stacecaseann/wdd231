@@ -1,14 +1,31 @@
+//import {getRecipeInformationById, clearCachedRecipes, setCachedRecipes, getCachedRecipes} from './recipeApiFunctions.js';
 import {getRecipeInformationById} from './recipeApiFunctions.js';
+import { Nutrition, Macros } from './nutrition.js';
 export const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 export const mealTypes = ["Breakfast","Lunch", "Dinner", "Snacks"];
-
+import { mealPlanKey } from './constants.js';
 
 //To do add like 
 
 class MealPlanDay {
-    constructor(day, meals = {}){
+    constructor(day, meals, nutrition){
         this.day = day;
-        this.meals = meals;
+        if (!meals)
+        {
+            this.meals = {};
+        }
+        else
+        {
+            this.meals = meals;
+        }
+        if (!nutrition)
+        {
+            this.nutrition = new Nutrition(0,0,0,0);
+        }
+        else
+        {
+            this.nutrition = nutrition;
+        }
     }
     addMeal(mealType, recipeDetails){
         if (!this.meals[mealType])
@@ -18,28 +35,39 @@ class MealPlanDay {
         if (!this.meals[mealType].includes(recipeDetails.id))
         {
             this.meals[mealType].push(recipeDetails.id);
+            this.calculateNutrition(recipeDetails);
         }
-        this.calculateNutrition(recipeDetails);
+
     }
-    removeMeal(mealType, recipeId)
+    removeMeal(mealType, recipe)
     {
         if (!this.meals[mealType])
         {
             console.log(`No meals are found for ${mealType}`);
             return;
         }
-        const index = this.meals[mealType].indexOf(recipeId);
+        const index = this.meals[mealType].indexOf(recipe.id);
         if (index !== -1)
         {
             this.meals[mealType].splice(index,1);
+            if (this.meals.length === 0)
+            {
+                this.meals[mealType] = [];   
+            }
+            this.removeNutrition(recipe);
         }
     }
     calculateNutrition(recipeDetails)
     {
-        //get nutrution off of recipe and add to current day
+        this.nutrition.addNutrition(recipeDetails.nutrition);
+    }
+    removeNutrition(recipeDetails)
+    {
+        this.nutrition.removeNutrition(recipeDetails.nutrition);
     }
     displayNutritionChart()
     {
+        return this.nutrition.displayMacroChart();
         //calculate the percentage and display
         //maybe put it in a class
     }
@@ -56,13 +84,13 @@ class MealPlan{
         //     "Sunday": new MealPlanDay("Sunday")
         // }
        this.mealPlanDays = [
-            new MealPlanDay("Monday"),
-            new MealPlanDay("Tuesday"),
-            new MealPlanDay("Wednesday"),
-            new MealPlanDay("Thursday"),
-            new MealPlanDay("Friday"),
-            new MealPlanDay("Saturday"),
-            new MealPlanDay("Sunday")
+            new MealPlanDay("Monday", null, null),
+            new MealPlanDay("Tuesday", null, null),
+            new MealPlanDay("Wednesday", null, null),
+            new MealPlanDay("Thursday", null, null),
+            new MealPlanDay("Friday", null, null),
+            new MealPlanDay("Saturday", null, null),
+            new MealPlanDay("Sunday", null, null)
        ];
 
     }
@@ -78,19 +106,35 @@ class MealPlan{
         return foundDay;
     }
     saveToLocalStorage(){
-        localStorage.setItem("mealPlan", this.toJson());
+        localStorage.setItem(mealPlanKey, this.toJson());
     }
+    
     static loadFromStorage()
     {
-        const data = localStorage.getItem("mealPlan");
+        const data = localStorage.getItem(mealPlanKey);
         if (!data) return new MealPlan();
 
         const jsonData = JSON.parse(data);
         const mealPlan = new MealPlan();
         mealPlan.mealPlanDays = jsonData.map(jsonDay => 
-            new MealPlanDay(jsonDay.day, jsonDay.meals)
+        {
+            const nutrition = new Nutrition(
+                jsonDay.nutrition.calories,
+                jsonDay.nutrition.protein,
+                jsonDay.nutrition.fat,
+                jsonDay.nutrition.carbs,
+                new Macros(
+                    jsonDay.nutrition.macros.protein,
+                    jsonDay.nutrition.macros.fat,
+                    jsonDay.nutrition.macros.carbs
+                )
+            );
+            return new MealPlanDay(jsonDay.day, jsonDay.meals, nutrition);
+        }
         );
-        return mealPlan
+
+
+        return mealPlan;
     }
 
 }
@@ -166,7 +210,7 @@ function addRecipe(recipe){
     {
         //This is extra page size in addition to cache, maybe I should get rid of the cache?
         usedRecipes[recipe.id] = recipe;
-        console.log(`Recipe added ${recipe.title}`);        
+        console.log(`Recipe added ${recipe.name}`);        
     }
 }
 export async function getRecipe(recipeId)
@@ -182,12 +226,40 @@ export async function getRecipe(recipeId)
     }
 }
 
-//I don't like this here, but it's a shortcut
+export async function printMenu(menuPlanElement, menuPlanDialog) 
+{
+    const div = await createMenuHtml(menuPlanElement, menuPlanDialog);    
 
-export async function printMenu(menuPlanElement, menuPlanDialog) {
+    if (menuPlanElement) {
+        menuPlanElement.replaceChildren(div);
+    }
+
+    const saveButton = document.createElement("button");
+    saveButton.textContent = "Save";
+    saveButton.addEventListener("click", () => {
+        saveMealPlan();
+        //saveCachedRecipesToCache();
+    });
+
+    const clearButton = document.createElement("button");
+    clearButton.textContent = "Clear";
+    clearButton.addEventListener("click", async () => {
+        mealPlanInstance = new MealPlan();
+        //clearCachedRecipes();
+
+        //TODO Clear out recipes?
+        saveMealPlan();
+        await printMenu(menuPlanElement, menuPlanDialog);
+    });
+
+    menuPlanElement.appendChild(saveButton);
+    menuPlanElement.appendChild(clearButton);
+}
+export async function createMenuHtml(menuPlanElement, menuPlanDialog)
+{
+    // const test = document.readyState;
     const div = document.createElement("div");
     div.classList.add("meal-plan-cards");
-
     // Use for...of loop here to work with async/await
     for (const mealPlan of mealPlanInstance.mealPlanDays) {
         const cardDiv = document.createElement("div");
@@ -208,16 +280,16 @@ export async function printMenu(menuPlanElement, menuPlanDialog) {
             console.log(mealType);
             //TODO move colspan to css
             
-            if (mealPlan.meals[mealType]) {
+            if (mealPlan.meals[mealType] && mealPlan.meals[mealType].length !== 0) {
                 const meals = mealPlan.meals[mealType];
 
                 const tr = document.createElement("tr");
                 const tdEmpty = document.createElement("td");
-                const tdRecipe = document.createElement("td");
-                tdRecipe.colSpan = 2;
-                tdRecipe.textContent = mealType;
+                const tdMealType = document.createElement("td");
+                tdMealType.colSpan = 3;
+                tdMealType.textContent = mealType;
                 tr.appendChild(tdEmpty);
-                tr.appendChild(tdRecipe);
+                tr.appendChild(tdMealType);
                 table.appendChild(tr);    
 
                 for (const mealId of meals) {
@@ -236,6 +308,23 @@ export async function printMenu(menuPlanElement, menuPlanDialog) {
                     tdRecipe.appendChild(spanElement);
 
                     tr.appendChild(tdRecipe);
+                    //Delete button
+                    // tr.appendChild(document.createElement("td"));
+                    //TODO make a link or open modal
+                    const tdDelete = document.createElement("td");
+
+                    const deleteSpanElement = document.createElement("span");
+                    deleteSpanElement.classList.add("link-text");
+                    deleteSpanElement.addEventListener("click", async () => 
+                    {   
+                        mealPlan.removeMeal(mealType,recipe);
+                        await printMenu(menuPlanElement, menuPlanDialog);                       
+                    });
+                    deleteSpanElement.textContent = "X"
+                    tdDelete.appendChild(deleteSpanElement);
+
+                    tr.appendChild(tdDelete);
+
                     table.appendChild(tr);
                     console.log(recipe.name);
                 }
@@ -243,7 +332,7 @@ export async function printMenu(menuPlanElement, menuPlanDialog) {
                 const tr = document.createElement("tr");
                 const tdPlaceHolder = document.createElement("td");
                 const tdMealType = document.createElement("td");
-                tdMealType.colSpan = 2;
+                tdMealType.colSpan = 3;
                 tdMealType.textContent = mealType;
                 tr.appendChild(tdPlaceHolder);
                 tr.appendChild(tdMealType);
@@ -251,75 +340,25 @@ export async function printMenu(menuPlanElement, menuPlanDialog) {
                 const trEmpty = document.createElement("tr");
                 const tdEmpty = document.createElement("td");
                 tdEmpty.innerHTML = "&nbsp;";
-                tdEmpty.colSpan = 3;
+                tdEmpty.colSpan = 4;
                 trEmpty.appendChild(tdEmpty);
                 table.appendChild(trEmpty);    
             }
         }
 
         cardContentDiv.appendChild(table);
+        const macroChart = mealPlan.displayNutritionChart();
+        cardContentDiv.appendChild(macroChart);
+        
         cardDiv.appendChild(cardContentDiv);
+        
         div.appendChild(cardDiv);
+        
     }
-
-    if (menuPlanElement) {
-        menuPlanElement.replaceChildren(div);
-    }
-
-    const saveButton = document.createElement("button");
-    saveButton.textContent = "Save";
-    saveButton.addEventListener("click", () => {
-        saveMealPlan();
-    });
-
-    const clearButton = document.createElement("button");
-    clearButton.textContent = "Clear";
-    clearButton.addEventListener("click", async () => {
-        mealPlanInstance = new MealPlan();
-        //TODO Clear out recipes?
-        saveMealPlan();
-        await printMenu(menuPlanElement, menuPlanDialog);
-    });
-
-    menuPlanElement.appendChild(saveButton);
-    menuPlanElement.appendChild(clearButton);
+    return div;
 }
 
 
-export function printMenuOLD()
-{
-    let menuHtml = ``;
-    mealPlanInstance.mealPlanDays.forEach( (mealPlan) => 
-    {
-
-        //html += `<div class="meal-plan-card">`;
-        //create cards
-        console.log(mealPlan.day);
-        // html += `<table class="meal-plan">`;
-        // menuHtml += `<h3 id="meal-plan-day"></h3>`;
-        // mealTypes.forEach( (mealType) => 
-        // {
-        //     console.log(mealType);
-        //     //TODO move colspan to css
-        //     const meals = mealPlan.meals[mealType];
-        //     if (mealPlan.meals[mealType])
-        //     {
-        //         document.createElement("td");
-
-        //         menuHtml += `<tr border><td></td><td colspan=2>${mealType}</td>`;
-        //         meals.forEach( (meal) => 
-        //         {
-        //             console.log(meal);
-        //             //TODO Make href,get title
-        //             menuHtml += `<tr border><td></td><td></td><td colspan=2>${meal}</td>`;
-        //         })
-        //     }
-        // })
-        html += "</div>";
-    }
-    );
-    return menuHtml;
-}
 //TODO this is duplicate of recipe-cards showRecipeDialog
 async function showRecipeDialog(recipe, menuDialog)
 {

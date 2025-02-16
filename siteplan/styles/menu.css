@@ -7,10 +7,6 @@
 }
 /* NAVIGATION */
 header{
-    display: flex;
-    flex-direction: column;
-} 
-.header-main{
     position: relative;
     display: grid;
     grid-template-columns: 96px auto 44px;
@@ -70,9 +66,9 @@ nav{
     max-width: 100%;
     display: grid;
     grid-template-rows:0fr;
-    transition: grid-template-rows .5s ease-in-out; 
+    transition: grid-template-rows .5s ease-out; 
     background-color: var(--dark-green);
-    align-items: flex-end;
+
 }
 nav ul{
     overflow:hidden;

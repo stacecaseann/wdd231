@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;1,300;1,700&family=Nunito+Sans:ital,wght@0,300;1,300;1,700&display=swap" rel="stylesheet">
-    <script type="module" src="scripts/recipe-search.js"></script>
+    <script type="module" src="scripts/recipe-search-page.js"></script>
 </head>
 <body>
     <header>
@@ -36,10 +36,25 @@
         <nav id="animate-me">
         </nav>
         <h1>Recipe Search</h1>
-            <div class="recipe-filter" id="search-filter"><button id="search-button">Search</button>
-            <button id="print-menu-button">Print Menu</button></div>            
+            <form id="search-recipe-form">
+                <fieldset>
+                    <label>Ingredient</span>
+                        <input type="search" name="query" id="ingredient" placeholder="Search Ingredients...">
+                    </label>
+                    <fieldset>
+                        <!-- <div>Which features did you find useful in the product? <span class="smaller">(Check all that Apply)</span></div> -->
+                        <label><input type="radio" name="mealType" id="breakfast" value="breakfast">Breakfast</label>
+                        <label><input type="radio" name="mealType" id="sideDish" value="sideDish">Side Dish</label>
+                        <label><input type="radio" name="mealType" id="mainCourse" value="mainCourse">Main Dish</label>
+                        <label><input type="radio" name="mealType" id="dessert" value="dessert">Dessert</label>            
+                        <label><input type="radio" name="mealType" id="any" value="any" checked>Any</label>
+                    </fieldset>
+                    <button id="search-button" type="button">Search</button>
+                    <button id="print-menu-button" type="button">Print Menu</button>
+                </fieldset>
+            </form>
             <div class="container">
-                <div class="recipe-cards" id="recipe-cards">
+                <div class="recipe-cards-content" id="recipe-cards-content">
                     <dialog class="recipe-card-dialog" id="recipe-card-dialog">
                         <div>
                             <h2>sample title</h2>    
@@ -48,7 +63,12 @@
                         <div id="recipe">
                         </div>
                     </dialog>
-                </div>
+                    <div class="recipe-cards" id="recipe-cards">
+                    </div>
+                    <div class="load-more">
+                        <button id="load-more">Load More</button>
+                    </div>
+            </div>
                 <div class="menu-plan" id="menu-plan">
                     <dialog class="menu-plan-dialog" id="menu-plan-dialog">
                         <div>

@@ -160,6 +160,7 @@ form input[type="submit"]
 
 table{
     border:1px solid black;
+    width: 275px;
 }
 td, th{
     border: 1px solid black;
@@ -173,6 +174,50 @@ td:first-child
 }
 .open{
     background-color: green;
+}
+.link-text:hover
+{
+    display: inline-block; 
+    font-weight: bold;
+    cursor: pointer;
+    transform: translateY(.1px) scale(1.05);
+}
+.highlight{
+    font-weight: bold;
+}
+/* Macro Chart */
+.macro-wrapper
+{
+   display:flex;
+   flex-grow: 1;
+   width:300px; 
+}
+.macro-percents
+{
+    display:flex;
+    width: 200px;
+    
+}
+.fat-placeholder{
+    background-color: rgb(226, 155, 24);
+    height: 2rem;
+    flex: 0 0 10%;
+}
+.carb-placeholder{
+    background-color: rgb(22, 169, 206);
+    height: 2rem;
+    flex: 0 0 15%;
+}
+.protein-placeholder{
+    background-color: rgb(180, 90, 231);
+    height: 2rem;
+    flex: 0 0 50%;
+}
+.extra-placeholder{
+    background-color: rgb(219, 11, 11);
+    height: 2rem;
+    width: 25px;
+   
 }
 footer{
     display:flex;

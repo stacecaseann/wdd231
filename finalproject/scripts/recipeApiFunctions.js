@@ -1,10 +1,31 @@
 import { Recipe } from "./recipes.js";
-
+let currentOffset = 0;
+let numberRetrieved = 10;
 const apiKey = "b0e4337af9msh58c47d67545d9f4p1d2fa4jsnb47ad5943664";
 const apiHost = "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
 const baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
 
-const cachedRecipes = [];
+//TODO Can't get this to save to local storage
+let cachedRecipes = [];
+// export function saveCachedRecipesToCache()
+// {
+    
+//     localStorage.setItem(cachedRecipesKey, JSON.stringify(cachedRecipes));
+// }
+// export function loadCachedRecipes()
+// {
+//     const cachedRecipesFromLocal = JSON.parse(localStorage.getItem("recipes"));
+//     if (cachedRecipesFromLocal)
+//     {
+//         cachedRecipes = cachedRecipesFromLocal;
+//     }
+// }
+// export function clearCachedRecipes()
+// {
+//     cachedRecipes = [];
+//     saveCachedRecipesToCache();
+// }
+
 async function fetchData(url)
 {
     try 
@@ -30,39 +51,85 @@ async function fetchData(url)
     }
 }
 /* Use this basic for testing */
-export async function getRecipesForTesting()
+export async function getRecipesFromFile()
 {
     const response = await fetch("data/sampleRecipes.json");
     return response.json();
 }
-export async function getRecipeInformationById(recipeId)
+export async function getRecipeInformationByIdOLD(recipeId)
 {
+    if (cachedRecipes[recipeId])
+        return cachedRecipes[recipeId];
+    
     //Don't add a cache here as I have it before this is called
     const response = await fetch("data/sampleRecipeDetails.json");
     const json = await response.json();
 
     const recipeDetails = json.find(recipe => recipe.id == recipeId);
     const recipe = new Recipe(recipeDetails.id, recipeDetails.title, recipeDetails);
+    cachedRecipes[recipeId] = recipe;
     return recipe;
 } 
-export async function getRecipesForTestingOLD(
+export async function getRecipesForTesting(
+    searchCriteria,
+    increaseOffset
 )
 {
+    if (increaseOffset)
+    {
+        currentOffset +=numberRetrieved;
+    }
+    else
+    {
+        currentOffset = 0;
+    }
     //TODO STORE the offset for when they request more recipes
-    const addRecipeInstructions = true;
-    const addRecipeNutrition = true;
+    const addRecipeInstructions = false
+    const addRecipeNutrition = false;
     const fillIngredients = false;
     const addRecipeInformation=false;
     const instructionsRequired=false;
-    const number = 10;
-    const offset = 1;
-    const queryParams =  new URLSearchParams({
-        addRecipeInstructions, instructionsRequired, addRecipeInformation,fillIngredients, addRecipeNutrition, number, offset
+    const number = numberRetrieved;
+    const offset = currentOffset;
+    const includeIngredients = searchCriteria.ingredient;
+    const mealType = searchCriteria.mealType;
+
+    let queryParams =  new URLSearchParams({
+        addRecipeInstructions, instructionsRequired, 
+        addRecipeInformation,fillIngredients, addRecipeNutrition, 
+        number, offset   });
+    if (includeIngredients && mealType)
+    {
+        const type = getMealType(mealType);
+        queryParams =  new URLSearchParams({
+            addRecipeInstructions, instructionsRequired, 
+            addRecipeInformation,fillIngredients, addRecipeNutrition, 
+            includeIngredients,
+            type,
+            number, offset   }); 
+    }
+    else if (includeIngredients && !mealType)
+    {
+        queryParams =  new URLSearchParams({
+            addRecipeInstructions, instructionsRequired, 
+            addRecipeInformation,fillIngredients, addRecipeNutrition, 
+            includeIngredients,
+            number, offset   }); 
+    }
+    else if (!includeIngredients && mealType)
+    {
+        const type = getMealType(mealType);
+        queryParams =  new URLSearchParams({
+            addRecipeInstructions, instructionsRequired, 
+            addRecipeInformation,fillIngredients, addRecipeNutrition, 
+            type,
+            number, offset   }); 
+    }
 //        cuisine,
 //        excludeCuisine,
 //         diet,
 //         intolerances,
-//    includeIngredients,
+
 //    excludeIngredients,
 //     type,
 //     addRecipeInstructions,
@@ -73,7 +140,7 @@ export async function getRecipesForTestingOLD(
 //        minFat, maxFat,minProtein, maxProtein, 
 //        minSugar,maxSugar,minFiber,maxFiber, 
 //        number, offset
-   });
+
 //TODO add try catch
     const url = `${baseUrl}/recipes/complexSearch?${queryParams}`;
     console.log(url);
@@ -81,7 +148,15 @@ export async function getRecipesForTestingOLD(
     console.log(data);
     return data.results;
 }
-export async function getRecipeInformationByIdOLD(
+function getMealType(mealType)
+{
+    if (mealType === "sideDish")
+        return "side dish";
+    if (mealType === "mainCourse")
+        return "main course";
+    return mealType;
+}
+export async function getRecipeInformationById(
     recipeId
 )
 {
@@ -95,10 +170,11 @@ export async function getRecipeInformationByIdOLD(
         const queryParams =  new URLSearchParams({
             includeNutrition}).toString();
         const url = `${baseUrl}/recipes/${recipeId}/information?${queryParams}`;
-        const data = await fetchData(url);
-        console.log(data);
-        cachedRecipes[recipeId] = data;
-        return data;
+        const recipeDetails = await fetchData(url);
+        console.log(recipeDetails);
+        const recipe = new Recipe(recipeDetails.id, recipeDetails.title, recipeDetails);
+        cachedRecipes[recipeId] = recipe;
+        return recipe;
     }
     catch(error)
     {

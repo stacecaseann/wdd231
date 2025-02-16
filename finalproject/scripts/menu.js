@@ -1,6 +1,6 @@
 const items =
 [
-    { key: "home", url:"home.html", description:"Home"},
+    { key: "home", url:"index.html", description:"Home"},
     { key: "search", url:"recipe-search.html", description: "Recipe Search"},
     { key: "mealPlan", url:"meal-plan.html", description: "Meal Plan"}
 ];

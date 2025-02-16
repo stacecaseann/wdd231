@@ -1,12 +1,25 @@
-import {getRecipesForTesting} from './recipeApiFunctions.js';
+import {getRecipesForTesting, getRecipesFromFile} from './recipeApiFunctions.js';
 import { daysOfWeek, addMeal, mealTypes, printMenu } from './meal-plan.js';
 
 import { getRecipe } from './meal-plan.js';
 
-export async function getFilteredRecipeCards(recipeCardsElement, recipeDialog, menuPlanElement, menuPlanDialog)
+export async function getRecipeCardsFromFile(recipeCardsElement, recipeDialog, menuPlanElement, menuPlanDialog)
 {
     try{
-        const recipesData = await getRecipesForTesting();
+        const recipesData = await getRecipesFromFile();
+        recipesData.forEach( (recipe) => 
+        {
+            const div = createRecipeCard(recipe, recipeDialog,menuPlanElement, menuPlanDialog);
+            recipeCardsElement.appendChild(div);
+        })
+    }catch(error){
+        console.error("Error getting recipes: ", error);
+    }    
+}
+export async function getFilteredRecipeCards(searchCriteria,increaseOffset,recipeCardsElement, recipeDialog, menuPlanElement, menuPlanDialog)
+{
+    try{
+        const recipesData = await getRecipesForTesting(searchCriteria,increaseOffset);
         recipesData.forEach( (recipe) => 
         {
             const div = createRecipeCard(recipe, recipeDialog,menuPlanElement, menuPlanDialog);
@@ -50,7 +63,7 @@ function createRecipeCard(recipe, recipeDialog, menuPlanElement, menuPlanDialog)
         const selectedDay = selectDay.value;
         const selectedMealType = selectMealType.value;
         await addMeal(selectedDay, selectedMealType, recipe.id);
-        printMenu(menuPlanElement, menuPlanDialog);
+        await printMenu (menuPlanElement, menuPlanDialog);
     });
     form.appendChild(addMealButton);
     
