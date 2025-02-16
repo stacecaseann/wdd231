@@ -51,7 +51,14 @@ async function fetchData(url)
     // }
 }
 /* Use this basic for testing */
-export async function getRecipesForTesting()
+export async function getRecipesFromFile()
+{
+    const response = await fetch("data/sampleRecipes.json");
+    return response.json();
+}
+
+//TODO Switch back
+export async function getRecipes()
 {
     const response = await fetch("data/sampleRecipes.json");
     return response.json();

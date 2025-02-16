@@ -17,3 +17,5 @@ document.addEventListener("DOMContentLoaded", async () =>
     menuPlanElement.replaceChildren(div);
 });
 
+const menuPlanCloseButton = document.querySelector("#menu-plan-dialog button");
+menuPlanCloseButton.addEventListener("click", () => menuPlanDialog.close());

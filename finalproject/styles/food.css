@@ -144,11 +144,18 @@ form input[type="email"]
     gap: 20px;
 }
 
-form input[type="checkbox"]
+form input[type="checkbox"],
+form input[type="radio"]
 {
     margin-right: 6px;
 }
-form input[type="submit"], button
+form input[type="submit"], 
+#goal button,
+#weight button,
+#calories button,
+#search-button,
+#print-menu-button,
+.load-more
 {
     border: none;
     background-image: linear-gradient(var(--orange), var(--off-white));
@@ -158,6 +165,19 @@ form input[type="submit"], button
     box-shadow: 1px 1px 4px #999;
     margin: 1rem;
     transform: translateX(-15px);
+    text-align: center;
+}
+.recipe-card form button
+{
+    border: none;
+    background-image: linear-gradient(var(--orange), var(--off-white));
+    /* width: 96%; */
+    padding: 5px;
+    box-shadow: 1px 1px 4px #999;
+    margin: 1rem;
+}
+.recipe-card img{
+    padding: 5px;
 }
 /* .business-cards{
     display:flex;
@@ -167,15 +187,52 @@ form input[type="submit"], button
 
 } */
 
+/* Search page */
+#search-recipe-form > fieldset:first-of-type {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.mealTypes
+{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap; 
+}
+.mealTypes label
+{
+    width: 50%; 
+    box-sizing: border-box;
+}
+.search-buttons
+{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.recipe-cards
+{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
 .recipe-card
 {
     display: flex;
     flex: 1;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: var(--off-white);
     overflow: hidden;
     border-radius: 2rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.recipe-card form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .meal-plan-cards
 {
@@ -204,6 +261,17 @@ form input[type="submit"], button
     border-radius: 2rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.2);
     padding: 1rem;
+}
+/* transition: transform 0.4s ease, box-shadow 0.4s ease;
+} */
+.meal-plan-card:hover,
+.recipe-card:hover{
+    transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+.recipe-card:not(:hover) {
+    transform: translateY(0) scale(1);
+    box-shadow: none;
 }
 table{
     border:1px solid black;
@@ -281,6 +349,28 @@ tr:nth-child(odd) td{
     width: 25px;
    
 }
+.recipe-card-dialog
+{
+    width: 50%; 
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid var(--dark-green);
+    border-radius: 8px;
+    background-color: var(--off-white);
+}
+.recipe-card-dialog > div:first-of-type,
+.menu-plan-dialog > div:first-of-type{
+    display: grid;
+    grid-template-columns: auto 44px;
+    background-color: var(--medium-blue);
+}
+.menu-plan-content{
+    margin-top: 20px;
+}
+.close-dialog{
+    background-color: var(--brown);
+    color: var(--off-white);
+}
 footer{
     display:flex;
     flex-direction: column;
@@ -289,6 +379,7 @@ footer{
     background-color: var(--dark-green);
     padding: var(--padding);
     color: var(--off-white);
+
 }
 footer p{
     margin: .5rem;

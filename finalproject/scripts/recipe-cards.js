@@ -1,7 +1,7 @@
-import {getRecipes, getRecipesFromFile} from './recipeApiFunctions.js';
+import {getRecipes, getRecipesFromFile,getRecipeInformationById} from './recipeApiFunctions.js';
 import { daysOfWeek, addMeal, mealTypes, printMenu } from './meal-plan.js';
 
-import { getRecipe } from './meal-plan.js';
+// import { getRecipe,getRecipesFromFile } from './meal-plan.js';
 
 export async function getRecipeCardsFromFile(recipeCardsElement, recipeDialog, menuPlanElement, menuPlanDialog)
 {
@@ -34,6 +34,7 @@ function createRecipeCard(recipe, recipeDialog, menuPlanElement, menuPlanDialog)
 {
     let div = document.createElement("div");
     div.className = "recipe-card";
+    
     const recipeHtml = getRecipeHtml(recipe);
     const button = document.createElement("button");
     button.textContent = "Learn More";
@@ -47,13 +48,13 @@ function createRecipeCard(recipe, recipeDialog, menuPlanElement, menuPlanDialog)
     const label = document.createElement("label");
     label.textContent = "Day of Week";
     label.setAttribute("for", "dayOfWeek");
-    form.appendChild(selectDay);
+    // form.appendChild(selectDay);
     
     const selectMealType = createDropDown(mealTypes, "mealType");
     const mealTypeLabel = document.createElement("label");
     mealTypeLabel.textContent = "Meal";
     mealTypeLabel.setAttribute("for", "mealType");
-    form.appendChild(selectMealType);
+    // form.appendChild(selectMealType);
 
     const addMealButton = document.createElement("button");
     addMealButton.textContent = "Add to Menu";
@@ -65,12 +66,18 @@ function createRecipeCard(recipe, recipeDialog, menuPlanElement, menuPlanDialog)
         await addMeal(selectedDay, selectedMealType, recipe.id);
         await printMenu (menuPlanElement, menuPlanDialog);
     });
-    form.appendChild(addMealButton);
-    
+    const inputDiv = document.createElement("div");
+    inputDiv.appendChild(selectDay);
+    inputDiv.appendChild(selectMealType);
+    const buttonDiv = document.createElement("div");
+    buttonDiv.appendChild(addMealButton);
+    buttonDiv.appendChild(button);
     div.innerHTML = recipeHtml;
     //TODO Store id in the background
+    form.appendChild(inputDiv);
+    form.appendChild(buttonDiv);
     div.appendChild(form);
-    div.appendChild(button);
+
     return div;
 }
 function createDropDown(options, id)
@@ -96,7 +103,7 @@ function getRecipeHtml(recipe)
 async function showRecipeDialog(recipe, recipeDialog)
 {
     try{
-        const recipeDetails = await getRecipe(recipe.id);//This calls the api to get the recipe if it doesn't exist
+        const recipeDetails = await getRecipeInformationById(recipe.id);//This calls the api to get the recipe if it doesn't exist
         console.log(recipeDetails);
         const title = recipeDialog.querySelector("h2");
         title.textContent = recipe.title;
