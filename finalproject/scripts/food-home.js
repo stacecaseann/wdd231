@@ -7,6 +7,10 @@ populateFooterWithDates();
 const navigationElement = document.querySelector("#animate-me");
 navigationElement.innerHTML = createNavigation("home");
 
+const currentTimeElement = document.getElementById("timestamp");
+const currentTime = new Date();
+currentTimeElement.value = currentTime;
+
 const goalElement = document.querySelector("#goal");
 const weightElement = document.querySelector("#weight");
 const caloriesElement = document.querySelector("#calories");
@@ -16,6 +20,8 @@ populateGoalElement();
 
 function populateGoalElement()
 {
+    const h3 = document.createElement("h3");
+    h3.textContent = "What is your weight loss goal?";
     const form = document.createElement("form");
     form.id = "calculate-goal";
 
@@ -42,6 +48,7 @@ function populateGoalElement()
         }
 
     });    
+    goalElement.appendChild(h3);
     goalElement.appendChild(form);   
 }
 function createInput(value, label, checked)
@@ -62,15 +69,18 @@ function createInput(value, label, checked)
 }
 function populateWeightElement()
 {
+    const h3 = document.createElement("h3");
+    h3.textContent = "What is your weight loss goal?";
     const form = document.createElement("form");
     form.id = "calculate-weight";
     const label = document.createElement("label");
-    label.textContent = "What is your weight?";
+    // label.textContent = "What is your weight?";
     const input = document.createElement("input");
     input.setAttribute("type", "number");
     input.setAttribute("name", "weight");
     input.setAttribute("id", "weight-entered");
     input.setAttribute("required", "required");
+    input.setAttribute("placeholder", "Enter your weight (in lb)");
     label.appendChild(input);
 
 
@@ -78,7 +88,7 @@ function populateWeightElement()
     button.id = "submit-weight";
     button.setAttribute("type", "button");
     button.textContent = "Calculate";
-
+    form.append(h3);
     form.append(label);
     form.append(button);
     button.addEventListener("click", () => 
@@ -96,8 +106,7 @@ function populateWeightElement()
             console.log("enter a weight");
         //TODO Log the error for the user
         else
-        {
-            
+        {            
             populateCalorieGoalElement();
         }
     });    
@@ -129,7 +138,7 @@ function populateCalorieGoalElement()
             calorieGoal = 1200;
     }
     const p = document.createElement("p");
-    p.textContent = `Your calorie goal should be ${calorieGoal}`;
+    p.innerHTML = `Your calorie goal should be <span class="highlight">${calorieGoal}</span>`;
     caloriesElement.replaceChildren(p);
     saveCalorieTargetToLocalStorage(calorieGoal);
 }

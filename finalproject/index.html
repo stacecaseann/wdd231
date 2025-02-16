@@ -11,12 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="WDD 231 - Healthy Eats - Stacy Yarrington">
     <meta name="author" content="Stacy Yarrington">
-    <title>WDD 231-  Healthy Eats - Stacy Yarrington</title>
+    <title>WDD 231-  Healthy Eats - Main Page - Stacy Yarrington</title>
     <link rel="icon" href="favicon.ico">
     <meta property="og:title" content="Plan Smart, Eat Right">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://stacecaseann.github.io/wdd231/chamber/">
-    <meta property="og:image" content="https://stacecaseann.github.io/wdd231/chamber/images/spanish-fork-480.webp">
+    <meta property="og:url" content="https://stacecaseann.github.io/wdd231/finalproject/">
+    <meta property="og:image" content="https://stacecaseann.github.io/wdd231/finalproject/sitephoto.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;1,300;1,700&family=Nunito+Sans:ital,wght@0,300;1,300;1,700&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
     <main>
         <nav id="animate-me">
         </nav>
-        <h1>Meal planning made easy</h1>
+        <h1>Healthy Meal Planning Made Easy</h1>
         <div class="main">
             <div class="form">
                 <form method="get" action="thankyou.html" id="join-form">
@@ -44,60 +44,33 @@
                         <label>Last name<span class="required">*</span>
                             <input type="text" name="lname" id="last-name" required autocomplete="family-name" title="Enter your last name">
                         </label>
-                        <label>Organization Title
-                            <input type="text" name="title" id="title" pattern="^[A-Za-z\s-]{7,}$" autocomplete="organization-title" title="Enter the title you hold in your organiaation (at least 7 characters)">
-                        </label>
                         <label>Email<span class="required">*</span>
                             <input type="email" name="email" id="email" required autocomplete="email" title="Enter your email address">
                         </label>
-                        <label>Phone Number<span class="required">*</span>
-                            <input type="tel" name="phone" id="phone" required placeholder="123-456-7890" pattern="(\d{3})[ -]?(\d{3})[ -]?(\d{4})" autocomplete="tel" title="Enter your 10 digit phone number">
-                        </label>
-                        <label>Organization<span class="required">*</span>
-                            <input type="text" name="organization" id="organization" required autocomplete="organization" title="Enter the name of your oranization">
-                        </label>
-                        <fieldset title="Pick a membership level">
-                        <legend>Membership Level<span class="required">*</span></legend>
-                        <label><input type="radio" name="membership" value="np" checked required>NP Membership</label>
-                        <label><input type="radio" name="membership" value="bronze" required>Bronze</label>
-                        <label><input type="radio" name="membership" value="silver" required>Silver</label>
-                        <label><input type="radio" name="membership" value="gold" required>Gold</label>
+                        <fieldset title="Interest Level">
+                        <legend>I am interested in: <span class="required">*</span></legend>
+                        <label><input type="checkbox" name="foodType" value="healthyRecipes" >Healthy Recipes</label>
+                        <label><input type="checkbox" name="foodType" value="nutrition" >Nutrition</label>
+                        <label><input type="checkbox" name="foodType" value="mealPlans" >Free Meal Plans</label>
+                        <label><input type="checkbox" name="foodType" value="Fitness" >Fitness</label>
                         </fieldset>
-                        <label>Organization Description
+                        <label>Tell me about yourself:
                             <textarea rows="3" name="description" id="description"></textarea>
                         </label>
                         <input type="hidden" name="timestamp" id="timestamp" tabindex="-1">
-                        <input type="submit" value="Join Now!">
+                        <input type="submit" value="Send me a newsletter!">
                     </fieldset>
                 </form>
             </div>
             <div class="calculate">
-                <!-- <div id="goal">
-                    <form id="calculate-goal">
-                        <label><input type="radio" name="calculateGoal" value="weightLoss" checked required>Weight Loss</label>
-                        <label><input type="radio" name="calculateGoal" value="maintenance" required>Maintenance</label>
-                        <label><input type="radio" name="calculateGoal" value="weightGain" required>Weight Gain</label>
-                        <button id="submit-weight-goal">Next</button>
-                    </form>
-                </div>
-                <div id="weight">
-                    <form id="calculate-weight">
-                        <label>What is your weight?
-                            <input type="number" name="weight" id="weight">
-                        </label>
-                        <button id="submit-weight">Next</button>
-                    </form>
-                </div>
-                <div id="calories">
-                    <p>Your calorie goal should be:<span class="highlight">50</span> </p>
-                </div> -->
                 <div id="goal"></div>
                 <div id="weight"></div>
                 <div id="calories"></div>
             </div>
             <div class="profile">
                 <img src="images/profile.jpg" alt="Profile Pic" height="189" width="200">
-                <p>I have always been interested in healthy meals, collecting recipes, and meal planning. I wanted a simple way to meal plan within a calorie limit.... </p>
+                <p>I have always been interested in healthy meals, collecting recipes, and meal planning. I wanted to create simple way to meal plan within a calorie limit.</p>
+                <p>The purpose of this site is to calculate your meal plan goals, then search for recipes and fill out a menu for the week. As you add a recipe, you will see if you are in the recommended macros and calories for the day.</p>
             </div>
 
         </div>

@@ -50,9 +50,7 @@ export class Nutrition
         const div = document.createElement("div");
         div.className = "macros";
         const p1 = document.createElement("p");
-        p1.textContent = "Fat/Carbs/Protein";
-        const p2 = document.createElement("p");
-        p2.innerHTML = `${this.macros.fat.toFixed(0)}%/${this.macros.carbs.toFixed(0)}%/${this.macros.protein.toFixed(0)}%`;
+        p1.textContent = `Fat/Carbs/Protein: ${this.macros.fat.toFixed(0)}%/${this.macros.carbs.toFixed(0)}%/${this.macros.protein.toFixed(0)}%`;
         const divMacros = document.createElement("div");
         divMacros.className = "macro-percents";
         
@@ -77,7 +75,6 @@ export class Nutrition
         divMacros.appendChild(proteinMacros);
 
         div.appendChild(p1);
-        div.append(p2);
         div.appendChild(divWrapper);
         const totalCalories = this.calories;
         const calorieGoal = getCalorieTargetFromLocalStorage(calorieGoalKey);

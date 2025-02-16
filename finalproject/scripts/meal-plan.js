@@ -5,7 +5,7 @@ export const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday
 export const mealTypes = ["Breakfast","Lunch", "Dinner", "Snacks"];
 import { mealPlanKey } from './constants.js';
 
-//To do add like 
+//To do add like
 
 class MealPlanDay {
     constructor(day, meals, nutrition){
@@ -30,7 +30,7 @@ class MealPlanDay {
     addMeal(mealType, recipeDetails){
         if (!this.meals[mealType])
         {
-            this.meals[mealType] = [];            
+            this.meals[mealType] = [];
         }
         if (!this.meals[mealType].includes(recipeDetails.id))
         {
@@ -52,7 +52,7 @@ class MealPlanDay {
             this.meals[mealType].splice(index,1);
             if (this.meals.length === 0)
             {
-                this.meals[mealType] = [];   
+                this.meals[mealType] = [];
             }
             this.removeNutrition(recipe);
         }
@@ -108,7 +108,7 @@ class MealPlan{
     saveToLocalStorage(){
         localStorage.setItem(mealPlanKey, this.toJson());
     }
-    
+
     static loadFromStorage()
     {
         const data = localStorage.getItem(mealPlanKey);
@@ -116,7 +116,7 @@ class MealPlan{
 
         const jsonData = JSON.parse(data);
         const mealPlan = new MealPlan();
-        mealPlan.mealPlanDays = jsonData.map(jsonDay => 
+        mealPlan.mealPlanDays = jsonData.map(jsonDay =>
         {
             const nutrition = new Nutrition(
                 jsonDay.nutrition.calories,
@@ -193,9 +193,9 @@ export async function addMeal(dayOfWeek, mealType, recipeId)
     {
         //TODO could cache this so it's available for both dialog and this without 2 calls
         //probably best since calls are limited
-        
+
         const recipeDetails = await getRecipe(recipeId);
-        
+
 
         const mealPlanDay = mealPlanInstance.findDay(dayOfWeek);
         mealPlanDay.addMeal(mealType, recipeDetails);
@@ -210,7 +210,7 @@ function addRecipe(recipe){
     {
         //This is extra page size in addition to cache, maybe I should get rid of the cache?
         usedRecipes[recipe.id] = recipe;
-        console.log(`Recipe added ${recipe.name}`);        
+        console.log(`Recipe added ${recipe.name}`);
     }
 }
 export async function getRecipe(recipeId)
@@ -219,16 +219,16 @@ export async function getRecipe(recipeId)
     {
         return usedRecipes[recipeId];
     }
-    else 
+    else
     {
         const recipe = await getRecipeInformationById(recipeId);
         return recipe;
     }
 }
 
-export async function printMenu(menuPlanElement, menuPlanDialog) 
+export async function printMenu(menuPlanElement, menuPlanDialog)
 {
-    const div = await createMenuHtml(menuPlanElement, menuPlanDialog);    
+    const div = await createMenuHtml(menuPlanElement, menuPlanDialog, "meal-plan-cards");
 
     if (menuPlanElement) {
         menuPlanElement.replaceChildren(div);
@@ -255,11 +255,11 @@ export async function printMenu(menuPlanElement, menuPlanDialog)
     menuPlanElement.appendChild(saveButton);
     menuPlanElement.appendChild(clearButton);
 }
-export async function createMenuHtml(menuPlanElement, menuPlanDialog)
+export async function createMenuHtml(menuPlanElement, menuPlanDialog, className)
 {
     // const test = document.readyState;
     const div = document.createElement("div");
-    div.classList.add("meal-plan-cards");
+    div.classList.add(className);
     // Use for...of loop here to work with async/await
     for (const mealPlan of mealPlanInstance.mealPlanDays) {
         const cardDiv = document.createElement("div");
@@ -273,33 +273,31 @@ export async function createMenuHtml(menuPlanElement, menuPlanDialog)
             cardContentDiv.classList.toggle("open");
         });
         //create cards
-        console.log(mealPlan.day);        
+        console.log(mealPlan.day);
         const table = document.createElement("table");
-        
+
         for (const mealType of mealTypes) {
             console.log(mealType);
             //TODO move colspan to css
-            
+
             if (mealPlan.meals[mealType] && mealPlan.meals[mealType].length !== 0) {
                 const meals = mealPlan.meals[mealType];
 
                 const tr = document.createElement("tr");
-                const tdEmpty = document.createElement("td");
+                // const tdEmpty = document.createElement("td");
                 const tdMealType = document.createElement("td");
-                tdMealType.colSpan = 3;
+                tdMealType.colSpan = 2;
                 tdMealType.textContent = mealType;
-                tr.appendChild(tdEmpty);
+                // tr.appendChild(tdEmpty);
                 tr.appendChild(tdMealType);
-                table.appendChild(tr);    
+                table.appendChild(tr);
 
                 for (const mealId of meals) {
                     const tr = document.createElement("tr");
                     const tdRecipe = document.createElement("td");
                     const recipe = await getRecipe(mealId);  // Asynchronously fetch the recipe
-                    
-
-                    tr.appendChild(document.createElement("td"));
-                    tr.appendChild(document.createElement("td"));
+                    // tr.appendChild(document.createElement("td"));
+                    // tr.appendChild(document.createElement("td"));
                     //TODO make a link or open modal
                     const spanElement = document.createElement("span");
                     spanElement.classList.add("link-text");
@@ -315,12 +313,13 @@ export async function createMenuHtml(menuPlanElement, menuPlanDialog)
 
                     const deleteSpanElement = document.createElement("span");
                     deleteSpanElement.classList.add("link-text");
-                    deleteSpanElement.addEventListener("click", async () => 
-                    {   
+                    deleteSpanElement.addEventListener("click", async () =>
+                    {
                         mealPlan.removeMeal(mealType,recipe);
-                        await printMenu(menuPlanElement, menuPlanDialog);                       
+                        await printMenu(menuPlanElement, menuPlanDialog);
                     });
-                    deleteSpanElement.textContent = "X"
+                    deleteSpanElement.textContent = "X";
+                    deleteSpanElement.className = "highlight";
                     tdDelete.appendChild(deleteSpanElement);
 
                     tr.appendChild(tdDelete);
@@ -328,37 +327,43 @@ export async function createMenuHtml(menuPlanElement, menuPlanDialog)
                     table.appendChild(tr);
                     console.log(recipe.name);
                 }
-            } else {
+            } 
+            else 
+            {
                 const tr = document.createElement("tr");
-                const tdPlaceHolder = document.createElement("td");
+                // const tdPlaceHolder = document.createElement("td");
                 const tdMealType = document.createElement("td");
-                tdMealType.colSpan = 3;
+                tdMealType.colSpan = 2;
                 tdMealType.textContent = mealType;
-                tr.appendChild(tdPlaceHolder);
+                // tr.appendChild(tdPlaceHolder);
                 tr.appendChild(tdMealType);
                 table.appendChild(tr);
                 const trEmpty = document.createElement("tr");
                 const tdEmpty = document.createElement("td");
                 tdEmpty.innerHTML = "&nbsp;";
-                tdEmpty.colSpan = 4;
+                tdEmpty.colSpan = 3;
                 trEmpty.appendChild(tdEmpty);
-                table.appendChild(trEmpty);    
+                table.appendChild(trEmpty);
             }
         }
 
         cardContentDiv.appendChild(table);
         const macroChart = mealPlan.displayNutritionChart();
         cardContentDiv.appendChild(macroChart);
-        
+
         cardDiv.appendChild(cardContentDiv);
-        
+
         div.appendChild(cardDiv);
-        
+
     }
     return div;
 }
 
-
+export async function printShoppingList()
+{
+    const shoppingListElement = document.createElement("div");
+    //shoppingListElement.
+}
 //TODO this is duplicate of recipe-cards showRecipeDialog
 async function showRecipeDialog(recipe, menuDialog)
 {

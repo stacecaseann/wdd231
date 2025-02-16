@@ -22,6 +22,9 @@ button{
     background-color: transparent;
     border:none;
 }
+header img{
+    padding: 15px;
+}
 h1, h2{
     text-align: center;
     font-family: var(--header-font);
@@ -40,34 +43,38 @@ h3{
     padding: .5rem;
     margin: 0;
 }
+/* Shared */
+.loading{
+    display:flex;
+    justify-content: center;
+    padding: 20px;
+ }
+ @keyframes loadingAnimation
+ {
+    0% {content: "";}
+    25% {content: ".";}
+    50% {content: "..";}
+    75% {content: "...";}
+    100% {content: "...";}
+ }
+ .dots::after{
+    content:"";
+    animation: loadingAnimation 3s infinite steps(1);
+ }
+ .highlight{
+    font-weight: bold;
+}
+
+/* Index page */
 .main{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     gap:10px;
     overflow: hidden;
     max-width: 100%;
-}
-.placeholder1{
-    background-color: var(--orange);
-    height: 200px;
-    width: 300px;
-}
-.placeholder2{
-    background-color: var(--brown);
-    height: 200px;
-    width: 300px;
-}
-.placeholder3{
-    background-color: var(--light-green);
-    height: 200px;
-    width: 300px;
-}
-.placeholder4{
     background-color: var(--off-white);
-    height: 200px;
-    width: 300px;
 }
-/*Form*/
+/*Main Page*/
 .join-main{
     display: flex;
     flex-direction: column;
@@ -89,19 +96,42 @@ form label{
 }
 form input[type="text"],
 form textarea, 
-form input[type="email"],
-form input[type="tel"]
+form input[type="email"]
 {
     display: block;
     width: 100%;
-    padding: var(--padding);
+    padding: 10px;
     box-sizing: border-box;
     border: 1px solid var(--dark-green);
+    margin-top: 5px;
     
 }
 .required
 {
     color: var(--orange);
+}
+.calculate
+{
+    margin-top:35px;
+    padding: 5px;
+    display:flex;
+    flex-direction: column;
+
+}
+#goal, #weight, #calories
+{
+    width: 100%;
+}
+#goal h3, #weight h3, #calories h3{
+    text-align: start;
+}
+.profile
+{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 30px;
 }
 /* input:required + label{
     font-weight: bold;
@@ -114,11 +144,11 @@ form input[type="tel"]
     gap: 20px;
 }
 
-form input[type="radio"]
+form input[type="checkbox"]
 {
     margin-right: 6px;
 }
-form input[type="submit"]
+form input[type="submit"], button
 {
     border: none;
     background-image: linear-gradient(var(--orange), var(--off-white));
@@ -136,6 +166,7 @@ form input[type="submit"]
     margin:1rem;
 
 } */
+
 .recipe-card
 {
     display: flex;
@@ -146,35 +177,68 @@ form input[type="submit"]
     border-radius: 2rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.2);
 }
+.meal-plan-cards
+{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+.meal-plan-cards-display
+{
+    display: flex;
+    flex-wrap: wrap;  /* Allows items to wrap to new rows */
+    flex-direction: row;  /* Ensures they lay out horizontally */
+    gap: 16px;  /* Adds spacing between cards */
+    justify-content: space-evenly; /* Distributes items evenly */
+}
 .meal-plan-card
 {
     display: flex;
     flex: 1;
     flex-direction: column;
+    min-width: 300px;
+    max-width: 300px;
     background-color: var(--off-white);
     overflow: hidden;
     border-radius: 2rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.2);
     padding: 1rem;
 }
-
 table{
     border:1px solid black;
     width: 275px;
 }
 td, th{
     border: 1px solid black;
+    padding:2px;
 }
 th{
     text-align: start;
 }
-td:first-child
+td:first-child {
+    width: 100%;  /* First column takes up all the space */
+}
+td:last-child
 {
-    width: 25px;
+    width: 1.rem;
 }
-.open{
+tr:nth-child(even) td{
+    background-color:  #ffc16a81;
+}
+tr:nth-child(odd) td{
+    background-color: #53381c6c;
+}
+.icon-placeholder{
+    display:flex;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+/* .open{
     background-color: green;
-}
+} */
 .link-text:hover
 {
     display: inline-block; 
@@ -182,9 +246,7 @@ td:first-child
     cursor: pointer;
     transform: translateY(.1px) scale(1.05);
 }
-.highlight{
-    font-weight: bold;
-}
+
 /* Macro Chart */
 .macro-wrapper
 {

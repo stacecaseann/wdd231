@@ -1,4 +1,4 @@
-import {getRecipesForTesting, getRecipesFromFile} from './recipeApiFunctions.js';
+import {getRecipes, getRecipesFromFile} from './recipeApiFunctions.js';
 import { daysOfWeek, addMeal, mealTypes, printMenu } from './meal-plan.js';
 
 import { getRecipe } from './meal-plan.js';
@@ -19,7 +19,7 @@ export async function getRecipeCardsFromFile(recipeCardsElement, recipeDialog, m
 export async function getFilteredRecipeCards(searchCriteria,increaseOffset,recipeCardsElement, recipeDialog, menuPlanElement, menuPlanDialog)
 {
     try{
-        const recipesData = await getRecipesForTesting(searchCriteria,increaseOffset);
+        const recipesData = await getRecipes(searchCriteria,increaseOffset);
         recipesData.forEach( (recipe) => 
         {
             const div = createRecipeCard(recipe, recipeDialog,menuPlanElement, menuPlanDialog);
