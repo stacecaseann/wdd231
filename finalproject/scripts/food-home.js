@@ -70,7 +70,7 @@ function createInput(value, label, checked)
 function populateWeightElement()
 {
     const h3 = document.createElement("h3");
-    h3.textContent = "What is your weight loss goal?";
+    h3.textContent = "What is your current weight?";
     const form = document.createElement("form");
     form.id = "calculate-weight";
     const label = document.createElement("label");

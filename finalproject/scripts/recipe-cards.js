@@ -1,7 +1,7 @@
-import {getRecipes, getRecipesFromFile,getRecipeInformationById} from './recipeApiFunctions.js';
+import {getRecipes, getRecipesFromFile} from './recipeApiFunctions.js';
 import { daysOfWeek, addMeal, mealTypes, printMenu } from './meal-plan.js';
 
-// import { getRecipe,getRecipesFromFile } from './meal-plan.js';
+import { getRecipe } from './meal-plan.js';
 
 export async function getRecipeCardsFromFile(recipeCardsElement, recipeDialog, menuPlanElement, menuPlanDialog)
 {
@@ -38,7 +38,8 @@ function createRecipeCard(recipe, recipeDialog, menuPlanElement, menuPlanDialog)
     const recipeHtml = getRecipeHtml(recipe);
     const button = document.createElement("button");
     button.textContent = "Learn More";
-    button.addEventListener("click", () => showRecipeDialog(recipe, recipeDialog));
+    button.type = "button";
+    button.addEventListener("click", async() => await showRecipeDialog(recipe, recipeDialog));
     
     //Create small form to insert recipe
     //TODO add drop down of meals and days
@@ -103,7 +104,7 @@ function getRecipeHtml(recipe)
 async function showRecipeDialog(recipe, recipeDialog)
 {
     try{
-        const recipeDetails = await getRecipeInformationById(recipe.id);//This calls the api to get the recipe if it doesn't exist
+        const recipeDetails = await getRecipe(recipe.id);//This calls the api to get the recipe if it doesn't exist
         console.log(recipeDetails);
         const title = recipeDialog.querySelector("h2");
         title.textContent = recipe.title;

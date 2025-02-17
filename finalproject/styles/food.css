@@ -44,6 +44,16 @@ h3{
     margin: 0;
 }
 /* Shared */
+.divider1, 
+.divider2 {
+    border: none;
+    height: 2px;
+    background-color: var(--dark-green); /* Adjust color */
+    width: 50%;
+
+    display:block;
+    margin: 20px auto; /* Center horizontally */
+}
 .loading{
     display:flex;
     justify-content: center;
@@ -68,17 +78,20 @@ h3{
 /* Index page */
 .main{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap:10px;
     overflow: hidden;
     max-width: 100%;
     background-color: var(--off-white);
 }
 /*Main Page*/
-.join-main{
+.form{
     display: flex;
     flex-direction: column;
     width: 100%;
+    flex-wrap: wrap;
+    min-width: 200px;
+    overflow: hidden;
 }
 /* Form */
 form{
@@ -112,7 +125,7 @@ form input[type="email"]
 }
 .calculate
 {
-    margin-top:35px;
+    margin:20px 20px 20px 20px;
     padding: 5px;
     display:flex;
     flex-direction: column;
@@ -131,7 +144,7 @@ form input[type="email"]
     flex-direction: column;
     align-items: center;
     padding: 1rem;
-    margin-top: 30px;
+
 }
 /* input:required + label{
     font-weight: bold;
@@ -140,7 +153,12 @@ form input[type="email"]
 /* Recipe search page */
 .container{
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Main content takes 2/3, aside takes 1/3 */
+    grid-template-columns: 1fr; 
+    gap: 20px;
+}
+.container-meal-plan{
+    display: grid;
+    grid-template-columns: 1fr; 
     gap: 20px;
 }
 
@@ -167,6 +185,12 @@ form input[type="submit"],
     transform: translateX(-15px);
     text-align: center;
 }
+.thank-you
+{
+    display:flex;
+    justify-content: center;
+    margin:20px;
+}
 .recipe-card form button
 {
     border: none;
@@ -175,6 +199,15 @@ form input[type="submit"],
     padding: 5px;
     box-shadow: 1px 1px 4px #999;
     margin: 1rem;
+}
+.menu-plan-content button
+{
+    border: none;
+    background-image: linear-gradient(var(--orange), var(--off-white));
+    width: 50%;
+    padding:1rem;
+    box-shadow: 1px 1px 4px #999;
+    margin: .5rem;
 }
 .recipe-card img{
     padding: 5px;
@@ -190,7 +223,7 @@ form input[type="submit"],
 /* Search page */
 #search-recipe-form > fieldset:first-of-type {
     display:grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
 }
 .mealTypes
 {
@@ -206,7 +239,6 @@ form input[type="submit"],
 .search-buttons
 {
     display:flex;
-    flex-wrap: wrap;
     flex-direction: column;
 }
 .recipe-cards
@@ -236,18 +268,15 @@ form input[type="submit"],
 }
 .meal-plan-cards
 {
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-
+    display:grid;
+    grid-template-columns: 1fr;
 }
 .meal-plan-cards-display
 {
-    display: flex;
-    flex-wrap: wrap;  /* Allows items to wrap to new rows */
-    flex-direction: row;  /* Ensures they lay out horizontally */
-    gap: 16px;  /* Adds spacing between cards */
-    justify-content: space-evenly; /* Distributes items evenly */
+    display: grid;
+    grid-template-columns: 1fr;  /* Allows items to wrap to new rows */
+    gap: 8px;  /* Adds spacing between cards */
+    box-sizing: border-box; /* Include padding and borders in element's width */
 }
 .meal-plan-card
 {
@@ -261,6 +290,9 @@ form input[type="submit"],
     border-radius: 2rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.2);
     padding: 1rem;
+    margin:.5rem;
+    box-sizing: border-box;
+    
 }
 /* transition: transform 0.4s ease, box-shadow 0.4s ease;
 } */
@@ -366,6 +398,10 @@ tr:nth-child(odd) td{
 }
 .menu-plan-content{
     margin-top: 20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 .close-dialog{
     background-color: var(--brown);

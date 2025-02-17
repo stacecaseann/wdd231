@@ -264,14 +264,14 @@ export async function createMenuHtml(menuPlanElement, menuPlanDialog, className)
     for (const mealPlan of mealPlanInstance.mealPlanDays) {
         const cardDiv = document.createElement("div");
         cardDiv.classList.add("meal-plan-card");
-        const dayOfWeekButton = document.createElement("button");
-        dayOfWeekButton.textContent = mealPlan.day;
+        const dayOfWeek = document.createElement("p");
+        dayOfWeek.textContent = mealPlan.day;
         const cardContentDiv = document.createElement("div");
 
-        cardContentDiv.appendChild(dayOfWeekButton);
-        dayOfWeekButton.addEventListener("click", () => {
-            cardContentDiv.classList.toggle("open");
-        });
+        cardContentDiv.appendChild(dayOfWeek);
+        // dayOfWeekButton.addEventListener("click", () => {
+        //     cardContentDiv.classList.toggle("open");
+        // });
         //create cards
         console.log(mealPlan.day);
         const table = document.createElement("table");
@@ -365,7 +365,7 @@ export async function printShoppingList()
     //shoppingListElement.
 }
 //TODO this is duplicate of recipe-cards showRecipeDialog
-async function showRecipeDialog(recipe, menuDialog)
+function showRecipeDialog(recipe, menuDialog)
 {
     try{
         const title = menuDialog.querySelector("h2");
