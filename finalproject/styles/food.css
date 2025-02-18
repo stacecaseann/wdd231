@@ -12,7 +12,7 @@
 body{
     max-width: 1080px;
     /* min-width: 500px; */
-    font-family: var(--normal-font);
+    font-family: var(--normal-font),"Times New Roman", Times, serif;
     padding: var(--padding);
     /* color: var(--dark-blue);
     background-color: var(--light-blue); */
@@ -27,7 +27,7 @@ header img{
 }
 h1, h2{
     text-align: center;
-    font-family: var(--header-font);
+    font-family: var(--header-font),Arial, sans-serif;
     background-color: var(--brown);
     padding: var(--padding);
     color:var(--off-white);
@@ -38,7 +38,7 @@ h2{
 }
 h3{
     text-align: center;
-    font-family: var(--header-font);
+    font-family: var(--header-font),Arial, sans-serif;
     font-size: 1.25rem;
     padding: .5rem;
     margin: 0;
@@ -321,7 +321,7 @@ td:first-child {
 }
 td:last-child
 {
-    width: 1.rem;
+    width: 1.2rem;
 }
 tr:nth-child(even) td{
     background-color:  #ffc16a81;

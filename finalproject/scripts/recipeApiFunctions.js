@@ -28,27 +28,27 @@ let cachedRecipes = [];
 
 async function fetchData(url)
 {
-    // try 
-    // {
-    //     const response = await fetch(url, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'x-rapidapi-host': apiHost, // Example for an authorization token
-    //             'x-rapidapi-key': apiKey // Add any other custom headers you need        
-    //         }
-    //     });
-    //     if (response.ok)
-    //     {
-    //         const data = await response.json();
-    //         console.log(data);
-    //         return data;
-    //     }
-    // }
-    // catch(error)
-    // {
-    //     console.log(error);
-    // }
+    try 
+    {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-rapidapi-host': apiHost, // Example for an authorization token
+                'x-rapidapi-key': apiKey // Add any other custom headers you need        
+            }
+        });
+        if (response.ok)
+        {
+            const data = await response.json();
+            console.log(data);
+            return data;
+        }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
 }
 /* Use this basic for testing */
 export async function getRecipesFromFile()
@@ -58,13 +58,13 @@ export async function getRecipesFromFile()
 }
 
 //TODO Switch back
-export async function getRecipes()
+export async function getRecipesTEST()
 {
     const response = await fetch("data/sampleRecipes.json");
     return response.json();
 }
 
-export async function getRecipeInformationById(recipeId)
+export async function getRecipeInformationByIdTEST(recipeId)
 {
     if (cachedRecipes[recipeId])
         return cachedRecipes[recipeId];
@@ -78,7 +78,7 @@ export async function getRecipeInformationById(recipeId)
     cachedRecipes[recipeId] = recipe;
     return recipe;
 } 
-export async function getRecipesForTestingOLD(
+export async function getRecipes(
     searchCriteria,
     increaseOffset
 )
@@ -140,7 +140,7 @@ export async function getRecipesForTestingOLD(
     return data.results;
 }
 
-export async function getRecipeInformationByIdOLD(
+export async function getRecipeInformationById(
     recipeId
 )
 {
